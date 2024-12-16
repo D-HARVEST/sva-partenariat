@@ -46,3 +46,7 @@ Route::get('/rapport', [VenteController::class, 'index'])->name('rapport');
 Route::get('/statistique', [VenteController::class, 'create'])->name('statistique');
 Route::resource('data-packages', DataPackageController::class);
 Route::resource('recharge-stocks', RechargeStockController::class);
+Route::get('/landing', function () {
+    return view('landingPage');
+})->name('landing');
+
