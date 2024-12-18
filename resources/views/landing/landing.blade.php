@@ -88,7 +88,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-4 mb-4">
                     <div class="card w-100 border partner-card">
-                        <img src="/assets/image/mtn-logo.png" alt="MTN Logo" class="mx-auto">
+                        <img src="{{ asset('asset_perso/mtn.png') }}" alt="MTN Logo" class="mx-auto mt-4" width="50" height="50">
                         <div class="card-body">
                             <h5 class="card-title">MTN Bénin</h5>
                             <p class="card-text">Notre partenaire principal pour la fourniture de forfaits Internet.</p>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card w-100 border partner-card">
-                        <img src="/assets/image/moov-logo.png" alt="Moov Logo" class="mx-auto">
+                        <img src="{{ asset('asset_perso/moov.png') }}" alt="MTN Logo" class="mx-auto mt-4" width="50" height="50">
                         <div class="card-body">
                             <h5 class="card-title">Moov Africa</h5>
                             <p class="card-text">Un partenaire clé pour des transactions fluides et rapides.</p>
