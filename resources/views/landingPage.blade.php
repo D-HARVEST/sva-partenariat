@@ -197,7 +197,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-4 mb-4">
                     <div class="card w-100 border partner-card">
-                        <img src="/assets/image/mtn-logo.png" alt="MTN Logo" class="mx-auto">
+                        <img src="{{ asset('asset_perso/mtn.png') }}" alt="MTN Logo" class="mx-auto" width="100" height="100">
                         <div class="card-body">
                             <h5 class="card-title">MTN Bénin</h5>
                             <p class="card-text">Notre partenaire principal pour la fourniture de forfaits Internet.</p>

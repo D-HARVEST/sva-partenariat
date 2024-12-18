@@ -6,7 +6,7 @@
     <div class="carousel-inner rounded-3">
         <div class="carousel-item active " data-bs-interval="10000">
 
-            <div style="background-image: url('{{ asset('/assets/image/technology-icon-rendering_23-2150613833.jpg') }}'); background-size: cover; background-position: center; background-color: rgba(0, 0, 0, 0.5);"
+            <div style="background-image: url('{{ asset('assets/image/futuristic-smart-city-with-5g-global-network-technology_53876-98438.avif') }}'); background-size: cover; background-position: center; background-color: rgba(0, 0, 0, 0.5);"
                 class="d-block w-100  img-car" alt="..."> </div>
             <div class="carousel-caption d-none d-md-block">
                 <h1 class="text-white text-shadow" >D-Go</h1>
