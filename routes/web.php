@@ -26,8 +26,8 @@ Route::get('theme-toggle', function () {
     }
     return back();
 })->name('theme-toggle');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::redirect('/home', '/');
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::redirect('/home', '/');
 
 Route::middleware(['auth', 'update-last-login', 'permission:gerer users',])->group(function () {
     Route::resource("users", UserController::class);
@@ -43,10 +43,9 @@ Route::get('/achat', [AchatController::class, 'index'])->name('achat');
 Route::get('/confirmation', [ConfirmationController::class, 'index'])->name('confirmation');
 Route::get('/mon-profile', [ProfilController::class, 'index'])->name('mon-profile');
 Route::get('/rapport', [VenteController::class, 'index'])->name('rapport');
-Route::get('/statistique', [VenteController::class, 'create'])->name('statistique');
 Route::resource('data-packages', DataPackageController::class);
 Route::resource('recharge-stocks', RechargeStockController::class);
 Route::get('/landing', function () {
-    return view('landingPage');
+    return view('landing.landing');
 })->name('landing');
-
+Route::redirect('/', '/landing')->name('home');

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="D-Go : La plateforme qui simplifie l'achat de forfaits Internet.">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" type="image/png" href="{{ asset('logo-dh.svg') }}" />
     <title>D-Go - Revente de Forfaits Internet</title>
 
     <!-- Lien Bootstrap -->
@@ -16,158 +18,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
     <link rel="stylesheet" href="{{ asset('spike/assets/css/styles.css') }}" />
     <link rel="stylesheet" href="{{ asset('bootstraps/bootstrap.min.css') }}" />
 
+    {{-- <link rel="stylesheet" href="{{ asset('aos.css') }}" /> --}}
 
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-        }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
+    <link rel="stylesheet" href="{{ asset('spike/slike2zoom.css') }}">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{{ asset('spike/assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('spike/assets/libs/aos/dist/aos.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('bootstraps/bootstrap.min.css') }}" /> --}}
 
-        .hero-section {
-            position: relative;
-            background: url('/assets/image/futuristic-smart-city-with-5g-global-network-technology_53876-98438.avif') no-repeat center center/cover;
-            color: white;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
 
-        .header-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 2;
-            padding: 10px 20px;
-        }
 
-        .hero-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
 
-        .content-container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-section h1 {
-            font-size: 3rem;
-            font-weight: bold;
-        }
-
-        .features {
-            background-color: #f8f9fa; /* Couleur similaire à celle des partenaires */
-            padding: 50px 0;
-        }
-
-        .features .card {
-            border: none;
-            background: white;
-            transition: transform 0.3s;
-        }
-
-        .features .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .cta-section {
-            background-color: #127dc5;
-            color: white;
-            padding: 50px 0;
-        }
-
-        .partners {
-            background-color: #f8f9fa; /* Couleur du fond */
-        }
-
-        .partner-card {
-            border: none;
-            transition: transform 0.3s;
-            text-align: center;
-            background-color: white;
-        }
-
-        .partner-card img {
-            max-width: 150px;
-            height: auto;
-        }
-
-        .partner-card:hover {
-            transform: scale(1.05);
-        }
-
-        .contact {
-            background-color: #f8f9fa; /* Couleur similaire à celle des partenaires */
-            padding: 50px 0;
-        }
-
-        .contact .card {
-            background: white;
-            border: none;
-            transition: transform 0.3s;
-        }
-
-        .contact .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .footer {
-            background: #343a40;
-            color: white;
-        }
-
-        .footer a {
-            color: #f8f9fa;
-        }
-
-        /* Uniformiser la taille des icônes */
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-    </style>
 </head>
-
+<script src="//code.tidio.co/a1c66h4zitdz51oldafsnwtmpciwn93n.js" async></script>
 <body>
-    <!-- Section Héro (Introduction) -->
-    <section class="hero-section">
-        <!-- Menu en haut -->
-        <div class="container-fluid header-container">
-            @include('landing.header-menu')
-        </div>
-        <!-- Contenu centré -->
-        <div class="container content-container">
-            <p class="hero-title display-2">D-Go</p> <!-- Modifié pour une taille plus grande -->
-            <div class="mt-4">
-                <p style="font-size: 1.5rem;" >Achetez vos forfaits Internet facilement</p>
-                <p class="lead">Profitez de tarifs avantageux et d'une expérience rapide et sécurisée.</p>
-            </div>
-        </div>
-    </section>
+    @include('landing.partials.styles')
+    <!-- Preloader -->
+    <div class="preloader">
+        <img src="{{ asset('spike/assets/images/logos/loader.svg') }}" alt="loader" class="lds-ripple img-fluid" />
+    </div>
+    <div class="container">
 
+        <div id="main-wrapper flex-column">
+            @include('landing.partials.header-menu')
 
-    <!-- Section Fonctionnalités -->
+            @include('landing.partials.first-carousel')
+
+        </div>
+    </div>
+
     <section id="features" class="features">
         <div class="container text-center">
             <h2 class="mb-5">Pourquoi choisir D-Go ?</h2>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card w-100 border p-3">
-                        <i class="fa-solid fa-money-bill-wave feature-icon text-primary"></i>
+                        <i class="fa-solid fa-lock feature-icon text-primary"></i>
                         <h5 class="card-title">Tarifs Compétitifs</h5>
                         <p class="card-text">Des prix imbattables pour toutes vos données Internet.</p>
                     </div>
@@ -343,6 +234,36 @@
     <script src="{{ asset('spike/assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('spike/assets/libs/aos/aos.js') }}"></script>
     <script src="{{ asset('spike/assets/js/landingpage.js') }}"></script>
+
+    <div class="offcanvas offcanvas-start modernize-lp-offcanvas" tabindex="-1" id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header p-4">
+            <img src="{{ asset('spike/assets/images/logos/logo-light.svg') }}" alt="" class="img-fluid"
+                width="150" />
+        </div>
+    </div>
+
+
+    <script src="{{ asset('spike/slick2.js') }}"></script>
+
+
+    <script src="{{ asset('spike/assets/js/vendor.min.js') }}"></script>
+    <script src="{{ asset('spike/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('spike/assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
+    <script src="{{ asset('spike/assets/js/theme/app.init.js') }}"></script>
+    <script src="{{ asset('spike/assets/js/theme/theme.js') }}"></script>
+    <script src="{{ asset('spike/assets/js/theme/app.min.js') }}"></script>
+    <script src="{{ asset('spike/assets/js/theme/sidebarmenu.js') }}"></script>
+    <script src="{{ asset('spike/assets/js/theme/feather.min.js') }}"></script>
+
+    <!-- solar icons -->
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('spike/assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('spike/assets/libs/aos/aos.js') }}"></script>
+    <script src="{{ asset('spike/assets/js/landingpage.js') }}"></script>
+
+
 
 </body>
 

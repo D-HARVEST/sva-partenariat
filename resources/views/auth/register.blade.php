@@ -26,7 +26,7 @@
         @csrf
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nom complet <strong class="text-danger">*</strong> </label>
-            <input id="name" type="text" class="form-control  @error('email') is-invalid @enderror" required
+            <input id="name" type="text" class="form-control  @error('name') is-invalid @enderror" required
                 autocomplete="name" autofocus name="name" value="{{ old('name') }}">
             @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
             </div>
             <div class="pass_show_hide">
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                    name="password" required autocomplete="current-password">
+                    name="password" required autocomplete="password">
             </div>
 
             @error('password')
@@ -65,7 +65,7 @@
 
         <div class="mb-3">
             <label for="telephone" class="form-label">Numéro de téléphone <strong class="text-danger"></strong> </label>
-            <input id="telephone" type="tel" class="form-control  @error('telephone') is-invalid @enderror" required
+            <input id="telephone" type="tel" class="form-control  @error('telephone') is-invalid @enderror"
                 autocomplete="telephone" autofocus name="Telephone" value="{{ old('telephone') }}">
             @error('telephone')
                 <span class="invalid-feedback" role="alert">

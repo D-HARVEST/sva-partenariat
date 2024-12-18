@@ -19,7 +19,7 @@ class VenteController extends Controller
      */
     public function create()
     {
-        return view('vente.statistique');
+        //
     }
 
     /**

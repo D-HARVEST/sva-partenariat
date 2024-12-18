@@ -14,6 +14,7 @@ class RoleSeeder extends Seeder
     {
         $roles = [
             ['name' => 'Super-admin', 'guard_name' => 'web'],
+            ['name' => 'Client', 'guard_name' => 'web'],
         ];
 
         foreach ($roles as $role) {
@@ -26,5 +27,7 @@ class RoleSeeder extends Seeder
         $permissions = config('permissions');
         $adminRole = \Spatie\Permission\Models\Role::where('name', 'Super-admin')->first();
         $adminRole->syncPermissions($permissions);
+        $client = \Spatie\Permission\Models\Role::where('name', 'Client')->first();
+        $client->syncPermissions($permissions);
     }
 }

@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-lg p-0 ">
         <div class="container-fluid px-0 ">
             <a class="navbar-brand m-0 p-0 " href="/">
-                <img src="{{ asset('logo-optishop-ondark.png') }}" width="150" alt="img-fluid" />
+                <img src="{{ asset('logo-optishop-onlight.png') }}" width="150" alt="img-fluid" />
             </a>
             <button class="navbar-toggler border-0 p-0 shadow-none" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -14,7 +14,7 @@
             <div class="collapse navbar-collapse justify-content-end px-0" id="navbarSupportedContent">
                 <ul class="navbar-nav align-items-center mb-2 mb-lg-0">
 
-
+                    
                     <div class="nav-item pe-0 me-0">
                         <a class="nav-link me-0 pe-0" target="_blank">
 
@@ -23,7 +23,7 @@
                                 aria-haspopup="true" aria-expanded="false">
                                 S'authentifier
                             </button> --}}
-                                <button class="btn btn-xl btn-light text-dark rounded-1 py-1 px-3 ms-2 me-0 ">
+                                <button class="btn btn-xl btn-outline-success text-dark rounded-1 py-1 px-3 ms-2 me-0 ">
                                     S'authentifier
                                 </button>
                                 <div class="dropdown-menu " aria-labelledby="dropdownMenuButton"

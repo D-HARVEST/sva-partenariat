@@ -21,10 +21,22 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('p@ssw0rd'),
         ]);
 
+        $user = User::updateOrcreate(
+            [
+                "email" => 'test@test',
+            ],
+            [
+                'name' => 'TEST POS',
+                "email" => 'test@test',
+                'password' => bcrypt('p@ssw0rd'),
+            ]
+        );
+
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
         try {
             $admin->assignRole('Super-admin');
+            $user->assignRole('Client');
         } catch (\Throwable $th) {
             //throw $th;
         }
