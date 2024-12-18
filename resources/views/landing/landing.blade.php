@@ -5,7 +5,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="shortcut icon" type="image/png" href="{{ asset('logo-dh.svg') }}" />
     <title>D-Go - Revente de Forfaits Internet</title>
 
@@ -13,26 +12,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <!-- Icônes Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="stylesheet" href="{{ asset('spike/assets/css/styles.css') }}" />
     <link rel="stylesheet" href="{{ asset('bootstraps/bootstrap.min.css') }}" />
-
-    {{-- <link rel="stylesheet" href="{{ asset('aos.css') }}" /> --}}
-
+    
+    <!-- Slick Carousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
     <link rel="stylesheet" href="{{ asset('spike/slike2zoom.css') }}">
+
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="{{ asset('spike/assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('spike/assets/libs/aos/dist/aos.css') }}" />
-    {{-- <link rel="stylesheet" href="{{ asset('bootstraps/bootstrap.min.css') }}" /> --}}
-
-
-
 
 </head>
 <script src="//code.tidio.co/a1c66h4zitdz51oldafsnwtmpciwn93n.js" async></script>
@@ -67,7 +57,7 @@
                     <div class="card w-100 border p-3">
                         <i class="fa-solid fa-lock feature-icon text-primary"></i>
                         <h5 class="card-title">Paiements Sécurisés</h5>
-                        <p class="card-text">Effectuez vos transactions en toute sécurité via MoMo et Moov.</p>
+                        <p class="card-text">Effectuez vos transactions en toute sécurité via MoMo</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -83,24 +73,15 @@
 
     <!-- Section Partenaires -->
     <section id="partners" class="py-5 partners">
-        <div class="container text-center">
+        <div class="container text-center" >
             <h2 class="mb-5">Ils nous font confiance</h2>
             <div class="row justify-content-center">
                 <div class="col-md-4 mb-4">
-                    <div class="card w-100 border partner-card">
+                    <div class="card w-100 border partner-card bg-secondary">
                         <img src="{{ asset('asset_perso/mtn.png') }}" alt="MTN Logo" class="mx-auto mt-4" width="50" height="50">
                         <div class="card-body">
-                            <h5 class="card-title">MTN Bénin</h5>
-                            <p class="card-text">Notre partenaire principal pour la fourniture de forfaits Internet.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card w-100 border partner-card">
-                        <img src="{{ asset('asset_perso/moov.png') }}" alt="MTN Logo" class="mx-auto mt-4" width="50" height="50">
-                        <div class="card-body">
-                            <h5 class="card-title">Moov Africa</h5>
-                            <p class="card-text">Un partenaire clé pour des transactions fluides et rapides.</p>
+                            <h5 class="card-title text-white">MTN Bénin</h5>
+                            <p class="card-text text-white">Notre partenaire principal pour la fourniture de forfaits Internet.</p>
                         </div>
                     </div>
                 </div>
@@ -108,6 +89,57 @@
         </div>
     </section>
 
+    @include('landing.partials.reviews');
+
+     
+      <!-- Section FAQ (Foire aux Questions) -->
+     <section id="faq" class="faq py-5">
+            <div class="container text-center">
+                <h2 class="mb-5">Foire aux Questions</h2>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Comment puis-je acheter un forfait ?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Vous pouvez acheter un forfait directement depuis notre site en sélectionnant l'offre qui vous intéresse et en suivant les étapes de paiement sécurisées.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Quels modes de paiement acceptez-vous ?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Nous acceptons les paiements via MoMo et bientôt d'autres options.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Comment puis-je annuler mon achat ?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Une fois le forfait acheté, vous pouvez demander un remboursement sous 24 heures en contactant notre support client.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        
     <!-- Section Contact -->
     <section id="contact" class="contact">
         <div class="container">
@@ -205,6 +237,8 @@
             </div>
         </div>
     </section>
+
+     
     <!-- Footer -->
     <footer class="footer py-4">
         <div class="container text-center">
@@ -215,56 +249,38 @@
                 <a href="#" class="mx-1"><i class="fa-brands fa-instagram"></i></a>
             </p>
         </div>
-    </footer>
-
-    <script src="{{ asset('spike/slick2.js') }}"></script>
-
-    <script src="{{ asset('spike/assets/js/vendor.min.js') }}"></script>
-    <script src="{{ asset('spike/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('spike/assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/theme/app.init.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/theme/theme.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/theme/app.min.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/theme/sidebarmenu.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/theme/feather.min.js') }}"></script>
-
-    <!-- solar icons -->
-    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('spike/assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('spike/assets/libs/aos/aos.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/landingpage.js') }}"></script>
-
-    <div class="offcanvas offcanvas-start modernize-lp-offcanvas" tabindex="-1" id="offcanvasNavbar"
-        aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header p-4">
-            <img src="{{ asset('spike/assets/images/logos/logo-light.svg') }}" alt="" class="img-fluid"
-                width="150" />
-        </div>
-    </div>
-
-
-    <script src="{{ asset('spike/slick2.js') }}"></script>
-
-
-    <script src="{{ asset('spike/assets/js/vendor.min.js') }}"></script>
-    <script src="{{ asset('spike/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('spike/assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/theme/app.init.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/theme/theme.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/theme/app.min.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/theme/sidebarmenu.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/theme/feather.min.js') }}"></script>
-
-    <!-- solar icons -->
-    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('spike/assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('spike/assets/libs/aos/aos.js') }}"></script>
-    <script src="{{ asset('spike/assets/js/landingpage.js') }}"></script>
-
-
-
-</body>
-
-</html>
+       
+    
+        <!-- Scripts -->
+        <script src="{{ asset('spike/assets/js/vendor.min.js') }}"></script>
+        <script src="{{ asset('spike/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('spike/assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
+        <script src="{{ asset('spike/assets/js/theme/app.init.js') }}"></script>
+        <script src="{{ asset('spike/assets/js/theme/theme.js') }}"></script>
+        <script src="{{ asset('spike/assets/js/theme/app.min.js') }}"></script>
+        <script src="{{ asset('spike/assets/js/theme/sidebarmenu.js') }}"></script>
+        <script src="{{ asset('spike/assets/js/theme/feather.min.js') }}"></script>
+    
+        <!-- Solar icons -->
+        <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+    
+        <!-- Owl Carousel -->
+        <script src="{{ asset('spike/assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
+    
+        <!-- AOS -->
+        <script src="{{ asset('spike/assets/libs/aos/aos.js') }}"></script>
+    
+        <!-- Custom Landing Page Script -->
+        <script src="{{ asset('spike/assets/js/landingpage.js') }}"></script>
+    
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var myCollapse = document.getElementById('faqAccordion');
+                var bsCollapse = new bootstrap.Collapse(myCollapse, {
+                    toggle: false
+                });
+            });
+        </script>
+    </body>
+    
+    </html>

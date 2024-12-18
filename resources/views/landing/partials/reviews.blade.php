@@ -5,7 +5,7 @@
             'fonction' => 'Propriétaire de boutique en ligne',
             'title' => 'Le suivi en temps réel est juste incroyable.',
             'content' =>
-                "Pouvoir suivre nos ventes et notre chiffre d'affaires en direct a complètement changé notre vision de la gestion. Nous savons exactement ce qui fonctionne et où ajuster nos efforts.",
+                "Je suis vraiment satisfait de l'application D-Go ! J'ai acheté un forfait Internet en quelques clics seulement, et la transaction a été super sécurisée via MoMo. En plus, j'ai reçu mon forfait instantanément. C'est exactement ce que je cherchais.",
         ],
         [
             'name' => 'Marc',
@@ -50,24 +50,20 @@
                         <div class="bg-white p-2 px-3 rounded-end-pill mb-3"
                             style="position: absolute; bottom: 0;left: 0;">
                             <h6 class="mb-0">— Amina</h6>
-                            <p class="text-muted mb-0">Propriétaire de boutique en ligne</p>
+                            <p class="text-muted mb-0"></p>
                         </div>
                     </div>
 
                     <div class="card shadow-none bg-primary-subtle p-3 rounded-3">
-                        <h6>Parfait pour les petites entreprises comme la nôtre.</h6>
-                        <p>Cette application est facile à utiliser et très abordable. Nous n'avons plus besoin d'un
-                            logiciel compliqué pour gérer nos ventes et stocks.</p>
+                        <h6>Une expérience d'achat rapide et sécurisée</h6>
+                        <p>Je suis vraiment satisfait de l'application D-Go ! J'ai acheté un forfait Internet en quelques clics seulement, et la transaction a été super sécurisée via MoMo. En plus, j'ai reçu mon forfait instantanément. C'est exactement ce que je cherchais.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 ">
                     <div class="card shadow-none bg-warning-subtle p-3 rounded-3">
-                        <h6>Un vrai gain de temps pour nos équipes.</h6>
+                        <h6>Le meilleur rapport qualité-prix du marché</h6>
                         <p>
-                            Avant, on passait des heures à faire les rapports de vente manuellement. Avec cette
-                            solution, tout est automatisé et accessible en un clic. On peut enfin se concentrer sur
-                            nos
-                            clients !
+                            Je recommande vivement D-Go à tous ceux qui cherchent des forfaits Internet à des prix imbattables. J'ai comparé avec d'autres plateformes, et D-Go reste la plus compétitive. Je n'ai jamais eu un meilleur rapport qualité-prix.
                         </p>
                     </div>
                     <div class="card shadow-none"
@@ -75,7 +71,7 @@
                         <div class="bg-white p-2 px-3 rounded-end-pill mb-3"
                             style="position: absolute; bottom: 0;left: 0;">
                             <h6 class="mb-0">— Franklin</h6>
-                            <p class="text-muted mb-0">Responsable de magasin</p>
+                            <p class="text-muted mb-0"></p>
                         </div>
                     </div>
 
@@ -86,18 +82,14 @@
                         <div class="bg-white p-2 px-3 rounded-end-pill mb-3"
                             style="position: absolute; bottom: 0;left: 0;">
                             <h6 class="mb-0">— Jean-Pierre</h6>
-                            <p class="text-muted mb-0">Directeur commercial</p>
+                            <p class="text-muted mb-0"></p>
                         </div>
                     </div>
                     <div class="bg-success-subtle p-3 rounded-3">
 
-                        <h6>Un outil indispensable pour notre boutique !</h6>
+                        <h6>Une solution fiable pour mes besoins de données</h6>
                         <p>
-                            Depuis que nous utilisons cette application, la gestion de nos stocks est devenue
-                            tellement
-                            plus simple. Les alertes de stock bas sont particulièrement utiles pour éviter les
-                            ruptures
-                            en période de forte demande.
+                            D-Go est devenu ma solution préférée pour acheter des forfaits Internet. J'ai testé plusieurs offres et je n'ai jamais été déçu. La livraison est instantanée et le service client est réactif en cas de problème. Je suis client fidèle maintenant !
                         </p>
                     </div>
                 </div>
