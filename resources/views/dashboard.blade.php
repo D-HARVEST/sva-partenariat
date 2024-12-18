@@ -67,69 +67,80 @@
 </div>
 @endrole
 <div class="row">
-    <!-- Première colonne -->
+    @role('Super-admin')
+    <!-- Premiere colonne -->
+    <div class="col-lg-12 col-xl-6 d-flex align-items-stretch">
+        <div class="card w-100">
+            <div class="card-body pb-2">
+                <h5 class="">Les data en stock critiques</h5>
+                <div class="table-responsive overflow-x-auto border rounded-1">
+                    <table id="all-student" class="table table-bordered border table-striped align-middle">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Volume(s)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-top">
+                                <tr>
+                                    <td>
+                                        <p>Moov</p>
+                                    </td>
+                                    <td>
+                                        <p>5 GB</p>
+                                    </td>
+                                    <td>
+                                        <div class="dropdown dropstart">
+                                            <a href="#" class="text-muted"
+                                                id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="ti ti-dots-vertical fs-5"></i>
+                                            </a>
+                                            <ul class="dropdown-menu"
+                                                aria-labelledby="dropdownMenuButton">
+                                                <li>
+                                                    <a class="dropdown-item d-flex align-items-center gap-3"
+                                                        href="#">
+                                                        <i class="fs-4 ti ti-plus"></i>Détails / Ajouter Quantité
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item d-flex align-items-center gap-3"
+                                                        href="#">
+                                                        <i class="fs-4 ti ti-edit"></i>Désactiver le suivi de stock
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endrole
+
+    <!-- Deuxième colonne -->
     <div class="col-lg-12 col-xl-6 d-flex align-items-stretch">
         <div class="card w-100">
             <div class="card-body d-flex justify-content-between align-items-center position-relative">
                 <div>
                     <h5 class="mb-1 fw-bold">Bienvenue, Jonathan Deo</h5>
                     <p class="fs-3 mb-3 pb-1">Gérez vos données en toute simplicité !</p>
+                    @role('Client')
                     <a class="btn btn-primary rounded-1" href="{{ route('achat') }}">
                         Acheter de la data
                     </a>
+                    @endrole
                 </div>
                 <div>
                     <img src="{{ asset('spike/assets/images/backgrounds/school.png') }}"
                          class="img-fluid"
                          alt="Image de fond"
                          style="max-width: 200px; height: auto;" />
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Deuxième colonne avec 3 cartes -->
-    <div class="col-lg-12 col-xl-6">
-        <div class="row h-100">
-            <div class="col-sm-4 d-flex align-items-stretch">
-                <div class="card warning-card overflow-hidden text-bg-primary w-100">
-                    <div class="card-body p-4">
-                        <div class="mb-7">
-                            <i class="ti ti-brand-producthunt fs-8 fw-lighter"></i>
-                        </div>
-                        <h5 class="text-white fw-bold fs-14 text-nowrap">
-                            2358 <span class="fs-2 fw-light">+23%</span>
-                        </h5>
-                        <p class="opacity-50 mb-0">Sales</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 d-flex align-items-stretch">
-                <div class="card danger-card overflow-hidden text-bg-primary w-100">
-                    <div class="card-body p-4">
-                        <div class="mb-7">
-                            <i class="ti ti-report-money fs-8 fw-lighter"></i>
-                        </div>
-                        <h5 class="text-white fw-bold fs-14">
-                            356 <span class="fs-2 fw-light">+8%</span>
-                        </h5>
-                        <p class="opacity-50 mb-0">Refunds</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 d-flex align-items-stretch">
-                <div class="card info-card overflow-hidden text-bg-primary w-100">
-                    <div class="card-body p-4">
-                        <div class="mb-7">
-                            <i class="ti ti-currency-dollar fs-8 fw-lighter"></i>
-                        </div>
-                        <h5 class="text-white fw-bold fs-14 text-nowrap">
-                            $235.8K <span class="fs-2 fw-light">-3%</span>
-                        </h5>
-                        <p class="opacity-50 mb-0">Earnings</p>
-                    </div>
                 </div>
             </div>
         </div>

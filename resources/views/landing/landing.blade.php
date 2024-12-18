@@ -31,9 +31,6 @@
     <link rel="stylesheet" href="{{ asset('spike/assets/libs/aos/dist/aos.css') }}" />
     {{-- <link rel="stylesheet" href="{{ asset('bootstraps/bootstrap.min.css') }}" /> --}}
 
-
-
-
 </head>
 <script src="//code.tidio.co/a1c66h4zitdz51oldafsnwtmpciwn93n.js" async></script>
 <body>
@@ -58,7 +55,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card w-100 border p-3">
-                        <i class="fa-solid fa-lock feature-icon text-primary"></i>
+                        <i class="fa-solid fa-money-bill-wave feature-icon text-primary"></i>
                         <h5 class="card-title">Tarifs Compétitifs</h5>
                         <p class="card-text">Des prix imbattables pour toutes vos données Internet.</p>
                     </div>
