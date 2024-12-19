@@ -62,7 +62,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-										<td >{{ $rechargeStock->Volume }}</td>
+										<td >{{ $rechargeStock->Volume }} go</td>
 										<td >{{ $rechargeStock->Observation }}</td>
 										<td >{{ $rechargeStock->ExpireAt }}</td>
 

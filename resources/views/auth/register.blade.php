@@ -44,9 +44,8 @@
                 </span>
             @enderror
         </div>
-
+    
         <div class="mb-4">
-
             <label for="password" class="form-label">Mot de passe</label>
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
             @error('password')
@@ -55,6 +54,18 @@
                 </span>
             @enderror
         </div>
+
+        <div class="mb-3">
+            <label for="telephone" class="form-label">Telephone</label>
+            <input id="telephone" type="tel" class="form-control @error('telephone') is-invalid @enderror" pattern="[0-9]{10}" name="telephone"
+                value="{{ old('telephone') }}"  autocomplete="telephone"  title="Le numéro de téléphone doit être composé uniquement de chiffres">
+            @error('telephone')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
 
         <button type="submit" class="btn btn-dark w-100 py-8 mb-4 rounded-1">S'inscrire</button>
 
