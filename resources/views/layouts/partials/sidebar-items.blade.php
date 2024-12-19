@@ -53,7 +53,7 @@
 
     <ul aria-expanded="false" class="collapse first-level">
         <li class="sidebar-item">
-            <a class="sidebar-link primary-hover-bg" href="{{ route('rapport') }}" aria-expanded="flse">
+            <a class="sidebar-link primary-hover-bg" href="{{ route('ventes.index') }}" aria-expanded="flse">
                 <iconify-icon icon="mdi:cash-register" class="fs-6 aside-icon"></iconify-icon>
                 <span class="hide-menu ps-1">Rapport de vente</span>
             </a>

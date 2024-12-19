@@ -176,34 +176,44 @@
                   <th>Prix</th>
                   <th>Volume</th>
                   <th>Status</th>
-                  <th>Temps d'expiration</th>
+                  <th>Validité</th>
                 </tr>
               </thead>
               <tbody>
+                @forelse ($historiques as $historique)
                 <tr>
-                  <td class="ps-0">
-                    <div class="form-check mb-0 flex-shrink-0">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
-                    </div>
-                  </td>
-                  <td>
-                    <h6 class="fs-4 mb-0 text-truncate-2">forfait mois</h6>
-                  </td>
-                  <td>
-                    <h5 class="mb-1 fs-4">50000 Fcfa</h5>
-                  </td>
-                  <td>
-                      <p class="text-dark mb-0 fw-normal text-truncate-2">
-                        30GB
-                      </p>
-                  </td>
-                  <td>
-                    <span class="badge rounded-pill bg-success-subtle text-success border-success border">Valide</span>
-                  </td>
-                  <td>
-                    <p class="mb-0">1 mois</p>
-                  </td>
-                </tr>
+                    <td class="ps-0">
+                      <div class="form-check mb-0 flex-shrink-0">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                      </div>
+                    </td>
+                    <td>
+                      <h6 class="fs-4 mb-0 text-truncate-2">forfait mois</h6>
+                    </td>
+                    <td>
+                      <h5 class="mb-1 fs-4">{{ $historique->dataPackage->Prix }} Fcfa</h5>
+                    </td>
+                    <td>
+                        <p class="text-dark mb-0 fw-normal text-truncate-2">
+                            {{ $historique->dataPackage->Volume }} Go
+                        </p>
+                    </td>
+                    <td>
+                      <span class="badge rounded-pill bg-success-subtle text-success border-success border">Valide</span>
+                    </td>
+                    <td>
+                      <p class="mb-0">{{ $historique->dataPackage->Validite }} H</p>
+                    </td>
+                  </tr>
+                  @empty
+                  <tr>
+                      <td colspan="4" class="text-center">
+                          <i class="ti ti-mood-empty text-muted"
+                              style="font-size: 3rem; font-weight: 100;"></i> <br>
+                          Aucune donnée disponible
+                      </td>
+                  </tr>
+              @endforelse
               </tbody>
             </table>
           </div>

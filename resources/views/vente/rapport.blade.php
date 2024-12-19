@@ -132,24 +132,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-8 d-flex align-items-stretch">
-            <div class="card border-radius-xl shadow w-100">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center ">
-
-                        <div class="ms-6">
-                            <h6 class="mb-1 fs-4">Vendeurs</h6>
-
-                            <ul class="list-group list-group-horizontal-sm ">
-                               <p>joe</p>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
         <div class="col-lg-12 ">
             <div class="card mb-0">
                 <div class="card-body">
@@ -204,24 +186,33 @@
                                 </tr>
                             </thead>
                             <tbody>
+                              @forelse ($ventes as $vente)
                                 <tr>
                                     <td>
                                         <h6 class="fs-4 mb-0 text-truncate-2">Forfait Semaine</h6>
                                     </td>
                                     <td>
-                                        <p class="text-dark mb-0 fw-normal text-truncate-2">5 GB</p>
+                                        <p class="text-dark mb-0 fw-normal text-truncate-2">{{ $vente->dataPackage->Volume }} Go</p>
                                     </td>
                                     <td>
-                                        <h5 class="mb-1 fs-4">5 000 FCFA</h5>
+                                        <h5 class="mb-1 fs-4">{{ $vente->dataPackage->Prix }} FCFA</h5>
                                     </td>
                                     <td>
-                                        <p class="mb-0">7 jours</p>
+                                        <p class="mb-0">{{ $vente->dataPackage->Validite }} H</p>
                                     </td>
                                     <td>
                                         <span class="badge rounded-pill bg-danger-subtle text-danger border-danger border">Expiré</span>
                                     </td>
                                 </tr>
-
+                              @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">
+                                            <i class="ti ti-mood-empty text-muted"
+                                                style="font-size: 3rem; font-weight: 100;"></i> <br>
+                                            Aucune donnée disponible pour cette période
+                                        </td>
+                                    </tr>
+                              @endforelse
                             </tbody>
                         </table>
                     </div>

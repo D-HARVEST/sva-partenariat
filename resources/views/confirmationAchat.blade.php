@@ -32,22 +32,27 @@
         <!-- Section de droite : Confirmation et paiement -->
         <div class="col-lg-6">
           <div class="shop-content">
+            <form action="{{ route('ventes.store') }}" method="POST">
+                @csrf
             <h4>Confirmer l'Achat</h4>
+            <input type="hidden" name="data_package_id" value="{{ $details->id }}">
             <div class="mb-3">
               <label for="phoneNumber" class="form-label fw-semibold">N° de Téléphone du Bénéficiaire</label>
-              <input type="text" id="phoneNumber" class="form-control" placeholder="Entrez un numéro de téléphone" value="0701234567">
+              <input type="text" id="phoneNumber" class="form-control" placeholder="Entrez un numéro de téléphone" value="{{ Auth::user()->telephone ?? '' }}">
             </div>
             <div class="mb-3">
-              <label for="paymentMethod" class="form-label fw-semibold">Mode de Paiement</label>
-              <select id="paymentMethod" class="form-select">
-                <option value="momo">MoMo MTN</option>
-                <option value="moov">MOOV</option>
-              </select>
+                <label for="paymentMethod" class="form-label fw-semibold">Mode de Paiement</label>
+                <select id="paymentMethod" name="ModePaiement" class="form-select" required>
+                    <option value="" disabled selected>Choisissez un mode de paiement</option>
+                    <option value="momo">MoMo MTN</option>
+                    <option value="moov">MOOV</option>
+                </select>
             </div>
             <div class="d-flex align-items-center gap-6 pt-4">
-              <a href="javascript:void(0)" class="btn btn-primary w-50">Confirmer et Payer</a>
-              <a href="javascript:void(0)" class="btn btn-secondary w-50">Annuler</a>
+              <button type="submit" class="btn btn-primary w-50">Confirmer et Payer</button>
+              <a href="{{ route('achat') }}" class="btn btn-secondary w-50">Annuler</a>
             </div>
+            </form>
           </div>
         </div>
       </div>
