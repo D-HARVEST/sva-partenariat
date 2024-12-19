@@ -24,7 +24,7 @@ class RechargeStockRequest extends FormRequest
         return [
 			'Volume' => 'required',
 			'Observation' => 'required|string',
-			'ExpireAt' => 'required',
+            'ExpireAt' => 'required|date',
         ];
     }
 }
