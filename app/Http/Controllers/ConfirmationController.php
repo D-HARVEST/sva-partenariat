@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use App\Models\DataPackage;
 use Illuminate\Http\Request;
 
 class ConfirmationController extends Controller
@@ -9,9 +11,11 @@ class ConfirmationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id): View
     {
-        return view('confirmationAchat');
+        $details = DataPackage::findOrFail($id);
+        $user = auth()->user();
+        return view('confirmationAchat', compact('details', 'user'));
     }
 
     /**

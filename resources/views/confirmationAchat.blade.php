@@ -10,24 +10,24 @@
       <div class="row">
         <!-- Section de gauche : Détail du forfait -->
         <div class="col-lg-6 border-end">
-          <div class="shop-content">
-            <h4>Détails du Forfait</h4>
-            <p class="mb-3 text-muted">Veuillez vérifier les informations avant de confirmer.</p>
-            <ul class="list-unstyled">
-              <li class="d-flex justify-content-between align-items-center mb-2">
-                <span>Forfait sélectionné :</span>
-                <span class="fw-semibold">5 Go / 30 J</span>
-              </li>
-              <li class="d-flex justify-content-between align-items-center mb-2">
-                <span>Prix :</span>
-                <span class="fw-semibold text-success">7 000 F</span>
-              </li>
-              <li class="d-flex justify-content-between align-items-center">
-                <span>Quantité :</span>
-                <span class="fw-semibold">1</span>
-              </li>
-            </ul>
-          </div>
+            <div class="shop-content">
+              <h4>Détails du Forfait</h4>
+              <p class="mb-3 text-muted">Veuillez vérifier les informations avant de confirmer.</p>
+              <ul class="list-unstyled">
+                <li class="d-flex justify-content-between align-items-center mb-2">
+                  <span>Forfait sélectionné :</span>
+                  <span class="fw-semibold">{{$details->Volume}} Go / {{$details->Validite}} H</span>
+                </li>
+                <li class="d-flex justify-content-between align-items-center mb-2">
+                  <span>Prix :</span>
+                  <span class="fw-semibold text-success">{{$details->Prix}} F</span>
+                </li>
+                {{-- <li class="d-flex justify-content-between align-items-center">
+                  <span>Volume :</span>
+                  <span class="fw-semibold">1</span>
+                </li> --}}
+              </ul>
+            </div>
         </div>
         <!-- Section de droite : Confirmation et paiement -->
         <div class="col-lg-6">

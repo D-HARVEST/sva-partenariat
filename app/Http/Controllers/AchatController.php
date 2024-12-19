@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataPackage;
 use Illuminate\Http\Request;
 
 class AchatController extends Controller
@@ -11,7 +12,8 @@ class AchatController extends Controller
      */
     public function index()
     {
-        return view('pageAchat');
+        $forfaits = DataPackage::all();
+        return view('pageAchat', compact('forfaits'));
     }
 
     /**
@@ -61,4 +63,5 @@ class AchatController extends Controller
     {
         //
     }
+
 }

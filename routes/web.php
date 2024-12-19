@@ -40,7 +40,7 @@ Route::middleware(['auth', 'update-last-login', 'permission:gerer roles'])->grou
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/achat', [AchatController::class, 'index'])->name('achat');
-Route::get('/confirmation', [ConfirmationController::class, 'index'])->name('confirmation');
+Route::get('/confirmation/{id}', [ConfirmationController::class, 'index'])->name('confirmation');
 Route::get('/mon-profile', [ProfilController::class, 'index'])->name('mon-profile');
 Route::get('/rapport', [VenteController::class, 'index'])->name('rapport');
 Route::resource('data-packages', DataPackageController::class);
@@ -49,3 +49,6 @@ Route::get('/landing', function () {
     return view('landing.landing');
 })->name('landing');
 Route::redirect('/', '/landing')->name('home');
+// Route::get('/forfaitAll', [DataPackageController::class, 'forfait'])->name('forfaitAll');
+
+
