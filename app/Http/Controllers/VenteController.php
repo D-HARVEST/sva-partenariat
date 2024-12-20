@@ -15,12 +15,17 @@ class VenteController extends Controller
      */
     public function index(Request $request)
     {
-        $startDate = $request->input('start_date', now()->startOfDay());
-        $endDate = $request->input('end_date', now()->endOfDay());
+        $user= Auth::user();
+        $vv = $request->validate([
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+        ]);
+        $start_date = $vv['start_date'] ?? date('Y-m-d 00:00:00');
+        $end_date = $vv['end_date'] ?? date('Y-m-d 23:59:59');
 
 
-        $ventes = Vente::where('user_id', Auth::id())
-            ->whereBetween('created_at', [$startDate, $endDate])
+        $ventes = Vente::where('user_id', $user->id)
+            ->whereBetween('created_at', [$start_date, $end_date])
             ->with('dataPackage')
             ->latest()
             ->get();

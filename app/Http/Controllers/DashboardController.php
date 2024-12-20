@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Historique;
 use Illuminate\Http\Request;
+use App\Models\RechargeStock;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -13,11 +14,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $stockCritique = (int) config('app.stock_critique');
+        $stocksCritiques = RechargeStock::where('Volume', '<=', $stockCritique)->get();
         $historiques = Historique::where('user_id', Auth::id())
         ->with('dataPackage')
         ->latest()
         ->get();
-        return view('dashboard', compact('historiques'));
+        return view('dashboard', compact('historiques', 'stocksCritiques'));
     }
 
     /**

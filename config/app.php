@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'stock_critique' => env('STOCK_CRITIQUE', 50),
 
     /*
     |--------------------------------------------------------------------------

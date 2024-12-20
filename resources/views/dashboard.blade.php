@@ -77,18 +77,19 @@
                     <table id="all-student" class="table table-bordered border table-striped align-middle">
                         <thead>
                             <tr>
-                                <th>Type</th>
+                                <th>Forfait</th>
                                 <th>Volume(s)</th>
-                                <th></th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="border-top">
+                            @forelse ($stocksCritiques as $stock)
                                 <tr>
                                     <td>
-                                        <p>Moov</p>
+                                        <p>MTN</p>
                                     </td>
                                     <td>
-                                        <p>5 GB</p>
+                                        <p class="text-danger">{{ $stock->Volume }} Go</p>
                                     </td>
                                     <td>
                                         <div class="dropdown dropstart">
@@ -115,6 +116,11 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="3" class="text-center">Aucun stock critique trouvé</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
