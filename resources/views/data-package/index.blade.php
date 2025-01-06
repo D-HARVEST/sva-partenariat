@@ -66,11 +66,11 @@
                                             <td>{{ ++$i }}</td>
 
 										<td >{{ $dataPackage->referenceAPI }}</td>
-										<td >{{ $dataPackage->Volume }}</td>
-										<td >{{ $dataPackage->Cout }}</td>
-										<td >{{ $dataPackage->Prix }}</td>
-										<td >{{ $dataPackage->AncienPrix }}</td>
-										<td >{{ $dataPackage->Validite }}</td>
+										<td >{{ $dataPackage->Volume }} Go</td>
+										<td >{{ $dataPackage->Cout }} FCFA</td>
+										<td >{{ $dataPackage->Prix }} FCFA</td>
+										<td >{{ $dataPackage->AncienPrix }} FCFA</td>
+										<td >{{ $dataPackage->Validite }} Heure(s)</td>
 
                                             <td>
                                                 <div class="dropdown dropstart">

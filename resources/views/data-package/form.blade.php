@@ -8,27 +8,27 @@
         </div>
         <div class="col-lg-6 form-group mb-2 mb20">
             <strong> <label for="volume" class="form-label">{{ __('Volume') }}</label> <!-- <strong class="text-danger"> * </strong> -->  </strong>
-            <input type="text" name="Volume" class="form-control @error('Volume') is-invalid @enderror rounded-05" value="{{ old('Volume', $dataPackage?->Volume) }}" id="volume" >
+            <input type="number" name="Volume" pattern="[0-9]" class="form-control @error('Volume') is-invalid @enderror rounded-05" value="{{ old('Volume', $dataPackage?->Volume) }}" id="volume" >
             {!! $errors->first('Volume', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="col-lg-6 form-group mb-2 mb20">
             <strong> <label for="cout" class="form-label">{{ __('Cout') }}</label> <!-- <strong class="text-danger"> * </strong> -->  </strong>
-            <input type="text" name="Cout" class="form-control @error('Cout') is-invalid @enderror rounded-05" value="{{ old('Cout', $dataPackage?->Cout) }}" id="cout" >
+            <input type="number" name="Cout"  pattern="[0-9]" class="form-control @error('Cout') is-invalid @enderror rounded-05" value="{{ old('Cout', $dataPackage?->Cout) }}" id="cout" >
             {!! $errors->first('Cout', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="col-lg-6 form-group mb-2 mb20">
             <strong> <label for="prix" class="form-label">{{ __('Prix') }}</label> <!-- <strong class="text-danger"> * </strong> -->  </strong>
-            <input type="text" name="Prix" class="form-control @error('Prix') is-invalid @enderror rounded-05" value="{{ old('Prix', $dataPackage?->Prix) }}" id="prix" >
+            <input type="number" name="Prix"  pattern="[0-9]" class="form-control @error('Prix') is-invalid @enderror rounded-05" value="{{ old('Prix', $dataPackage?->Prix) }}" id="prix" >
             {!! $errors->first('Prix', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="col-lg-6 form-group mb-2 mb20">
             <strong> <label for="ancien_prix" class="form-label">{{ __('Ancienprix') }}</label> <!-- <strong class="text-danger"> * </strong> -->  </strong>
-            <input type="text" name="AncienPrix" class="form-control @error('AncienPrix') is-invalid @enderror rounded-05" value="{{ old('AncienPrix', $dataPackage?->AncienPrix) }}" id="ancien_prix" >
+            <input type="number" name="AncienPrix"  pattern="[0-9]" class="form-control @error('AncienPrix') is-invalid @enderror rounded-05" value="{{ old('AncienPrix', $dataPackage?->AncienPrix) }}" id="ancien_prix" >
             {!! $errors->first('AncienPrix', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="col-lg-6 form-group mb-2 mb20">
             <strong> <label for="validite" class="form-label">{{ __('Validite') }}</label> <!-- <strong class="text-danger"> * </strong> -->  </strong>
-            <input type="text" name="Validite" class="form-control @error('Validite') is-invalid @enderror rounded-05" value="{{ old('Validite', $dataPackage?->Validite) }}" id="validite" >
+            <input type="number" name="Validite"  pattern="[0-9]" class="form-control @error('Validite') is-invalid @enderror rounded-05" value="{{ old('Validite', $dataPackage?->Validite) }}" id="validite" >
             {!! $errors->first('Validite', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
 
