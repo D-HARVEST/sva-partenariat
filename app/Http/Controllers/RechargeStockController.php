@@ -98,10 +98,10 @@ class RechargeStockController extends Controller
         $request->validate([
             'Volume' => 'required|numeric',
             'ExpireAt' => 'required|date',
-            'id' => 'required|exists:recharge_stocks,id',
+            'recharge_stock_id' => 'required|exists:recharge_stocks,id',
         ]);
 
-        $rechargevolume = RechargeStock::find($request->id);
+        $rechargevolume = RechargeStock::find($request->recharge_stock_id);
 
         if (!$rechargevolume) {
             return redirect()->back()->with('error', 'Le stock spécifié est introuvable.');
