@@ -187,7 +187,7 @@
               </thead>
               <tbody>
                 @forelse ($historiques as $historique)
-                <tr>
+                 <tr>
                     <td class="ps-0">
                       <div class="form-check mb-0 flex-shrink-0">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
@@ -211,15 +211,15 @@
                       <p class="mb-0">{{ $historique->dataPackage->Validite }} H</p>
                     </td>
                   </tr>
-                  @empty
-                  <tr>
-                      <td colspan="4" class="text-center">
-                          <i class="ti ti-mood-empty text-muted"
-                              style="font-size: 3rem; font-weight: 100;"></i> <br>
-                          Aucune donnée disponible
-                      </td>
-                  </tr>
-              @endforelse
+                @empty
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <i class="ti ti-mood-empty text-muted"
+                            style="font-size: 3rem; font-weight: 100;"></i> <br>
+                        Aucune donnée disponible
+                    </td>
+                </tr>
+                @endforelse
               </tbody>
             </table>
           </div>
