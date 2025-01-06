@@ -18,8 +18,13 @@ class DashboardController extends Controller
         $stocksCritiques = RechargeStock::where('Volume', '<=', $stockCritique)->get();
         $transactions = Transaction::where('user_id', Auth::id())
         ->get();
-        return view('dashboard', compact('transactions', 'stocksCritiques'));
+        $trans = Transaction::all();
+        return view('dashboard', compact('transactions', 'trans', 'stocksCritiques'));
     }
+
+  
+
+   
 
     /**
      * Show the form for creating a new resource.
