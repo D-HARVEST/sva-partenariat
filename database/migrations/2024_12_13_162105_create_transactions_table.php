@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('Volume');
             $table->integer('Cout');
             $table->integer('Prix');
-            $table->integer('Validite')->default(720);
+            $table->integer('Validite');
             $table->string('ModePaiement');
             $table->boolean('Statut')->default(false);
             $table->integer('idPaiement');
