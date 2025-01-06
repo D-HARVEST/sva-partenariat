@@ -197,18 +197,18 @@
                       <h6 class="fs-4 mb-0 text-truncate-2">forfait mois</h6>
                     </td>
                     <td>
-                      <h5 class="mb-1 fs-4">{{ $transaction->dataPackage->Prix }} Fcfa</h5>
+                      <h5 class="mb-1 fs-4">{{ $transaction->Prix }} Fcfa</h5>
                     </td>
                     <td>
                         <p class="text-dark mb-0 fw-normal text-truncate-2">
-                            {{ $transaction->dataPackage->Volume }} Go
+                            {{ $transaction->Volume }} Go
                         </p>
                     </td>
                     <td>
                       <span class="badge rounded-pill bg-success-subtle text-success border-success border">Valide</span>
                     </td>
                     <td>
-                      <p class="mb-0">{{ $transaction->dataPackage->Validite }} H</p>
+                      <p class="mb-0">{{ $transaction->Validite }} H</p>
                     </td>
                   </tr>
                   @empty

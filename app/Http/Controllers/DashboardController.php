@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Historique;
 use Illuminate\Http\Request;
 use App\Models\RechargeStock;
 use App\Models\Transaction;
@@ -18,8 +17,6 @@ class DashboardController extends Controller
         $stockCritique = (int) config('app.stock_critique');
         $stocksCritiques = RechargeStock::where('Volume', '<=', $stockCritique)->get();
         $transactions = Transaction::where('user_id', Auth::id())
-        ->with('dataPackage')
-        ->latest()
         ->get();
         return view('dashboard', compact('transactions', 'stocksCritiques'));
     }

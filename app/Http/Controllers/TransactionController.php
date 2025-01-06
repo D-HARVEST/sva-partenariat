@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Vente;
-use App\Models\Historique;
+
+use App\Models\DataPackage;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,33 +11,14 @@ use Illuminate\Support\Facades\Auth;
 class TransactionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche le formulaire de confirmation d'achat.
      */
-    public function index(Request $request)
+    public function confirmPurchase($id)
     {
-        $user= Auth::user();
-        $vv = $request->validate([
-            'start_date' => 'nullable|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
-        ]);
-        $start_date = $vv['start_date'] ?? date('Y-m-d 00:00:00');
-        $end_date = $vv['end_date'] ?? date('Y-m-d 23:59:59');
+        // Récupérer les détails du forfait sélectionné
+        $details = DataPackage::findOrFail($id);
 
-
-        $transactions = Transaction::where('user_id', $user->id)
-            ->whereBetween('created_at', [$start_date, $end_date])
-            ->with('dataPackage')
-            ->latest()
-            ->get();
-        return view('vente.rapport', compact('ventes'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('achat.confirm', compact('details'));
     }
 
     /**
@@ -45,58 +26,32 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+        // Validation des champs nécessaires
         $request->validate([
-            'ModePaiement' => 'required',
+            'ModePaiement' => 'required|string',
             'data_package_id' => 'required|exists:data_packages,id',
+            'Telephone' => 'required|string',
         ]);
 
-        DB::transaction(function () use ($request) {
-            
-            $transactions = Transaction::create([
+        // Récupérer le forfait sélectionné
+        $dataPackage = DataPackage::findOrFail($request->data_package_id);
+
+        // Créer une nouvelle transaction avec les données du formulaire
+        DB::transaction(function () use ($request, $dataPackage) {
+            Transaction::create([
                 'ModePaiement' => $request->ModePaiement,
                 'user_id' => Auth::user()->id,
                 'data_package_id' => $request->data_package_id,
-            ]);
-
-            // Enregistrer dans transaction
-            Transaction::create([
-                'user_id' => Auth::user()->id,
-                'data_package_id' => $request->data_package_id,
+                'Volume' => $dataPackage->Volume,
+                'Cout' => $dataPackage->Cout,
+                'Prix' => $dataPackage->Prix,
+                'Validite' => $dataPackage->Validite,
+                'idPaiement' => rand(1000, 9999), // Exemple d'un id de paiement aléatoire
+                'Telephone' => $request->Telephone,
             ]);
         });
+
         return redirect()->route('achat')
-        ->with('success', 'Achat réalisée avec succès !');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+            ->with('success', 'Achat réalisé avec succès !');
     }
 }
