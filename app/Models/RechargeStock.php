@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class RechargeStock extends Model
 {
-    
+
     protected $perPage = 20;
 
     /**
@@ -29,5 +29,9 @@ class RechargeStock extends Model
      */
     protected $fillable = ['Volume', 'Observation', 'ExpireAt'];
 
+    public function mvmStock()
+    {
+        return $this->hasMany(MvmStock::class, 'recharge_stock_id', 'id');
+    }
 
 }

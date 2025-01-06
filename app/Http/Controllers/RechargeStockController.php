@@ -91,4 +91,17 @@ class RechargeStockController extends Controller
         return Redirect::route('recharge-stocks.index')
             ->with('success', 'RechargeStock a été supprimé(e) avec succes !');
     }
+
+    public function rechargeVolume()
+    {
+        $request->validate([
+            'Volume' => 'required',
+            'ExpireAt' => 'required|date',
+        ]);
+
+        $rechargeStock = RechargeStock::create([
+            'Volume' => $request->Volume,
+            'ExpireAt'=> $request->ExpireAt,
+        ]);
+    }
 }
