@@ -32,7 +32,7 @@
         <!-- Section de droite : Confirmation et paiement -->
         <div class="col-lg-6">
           <div class="shop-content">
-            <form action="{{ route('ventes.store') }}" method="POST">
+            <form action="{{ route('transactions.store') }}" method="POST">
                 @csrf
             <h4>Confirmer l'Achat</h4>
             <input type="hidden" name="data_package_id" value="{{ $details->id }}">

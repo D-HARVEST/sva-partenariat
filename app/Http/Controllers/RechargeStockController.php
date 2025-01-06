@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MvmStock;
+use Illuminate\View\View;
+use Illuminate\Http\Request;
 use App\Models\RechargeStock;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use App\Http\Requests\RechargeStockRequest;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\RechargeStockRequest;
 
 class RechargeStockController extends Controller
 {
@@ -92,16 +93,34 @@ class RechargeStockController extends Controller
             ->with('success', 'RechargeStock a été supprimé(e) avec succes !');
     }
 
-    public function rechargeVolume()
+    public function rechargeVolume(Request $request)
     {
         $request->validate([
-            'Volume' => 'required',
+            'Volume' => 'required|numeric',
             'ExpireAt' => 'required|date',
+            'id' => 'required|exists:recharge_stocks,id',
         ]);
 
-        $rechargeStock = RechargeStock::create([
-            'Volume' => $request->Volume,
+        $rechargevolume = RechargeStock::find($request->id);
+
+        if (!$rechargevolume) {
+            return redirect()->back()->with('error', 'Le stock spécifié est introuvable.');
+        }
+
+        $stockavant = $rechargevolume->Volume;
+        $nouveauVolume = $request->Volume + $stockavant;
+
+        $rechargeStock = RechargeStock::where('id', $request->id)->update([
+            'Volume' => $nouveauVolume,
             'ExpireAt'=> $request->ExpireAt,
         ]);
+
+        $stock = MvmStock::create([
+            'recharge_stock_id' => $rechargevolume->id,
+            'transaction_id' => null,
+            'Type' => 'ENTREE',
+            'Quantite' => $request->Volume,
+        ]);
+        return redirect()->route('dashboard')->with('success', 'Stock approvisionné avec succès.');
     }
 }

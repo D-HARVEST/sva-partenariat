@@ -4,6 +4,26 @@
 
 @extends('layouts.app')
 
+@section('script')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const volumeExpireModal = document.getElementById('volumeExpireModal');
+        volumeExpireModal.addEventListener('show.bs.modal', (event) => {
+            const button = event.relatedTarget; // Bouton qui a déclenché le modal
+            const stockId = button.getAttribute('data-id'); // Récupérer l'ID
+            const modalForm = volumeExpireModal.querySelector('form');
+
+            // Injecter l'ID dans le champ caché du formulaire
+            modalForm.querySelector('input[name="id"]').value = stockId;
+        });
+    });
+</script>
+
+@endsection
+
+@section('modal')
+    @include('modalAjout')
+@endsection
 
 @section('content')
 @role('Super-admin')
@@ -102,7 +122,8 @@
                                                 aria-labelledby="dropdownMenuButton">
                                                 <li>
                                                     <a class="dropdown-item d-flex align-items-center gap-3"
-                                                        href="#">
+                                                        href="#" data-bs-toggle="modal"
+                                                        data-bs-target="#volumeExpireModal" data-id="{{ $stock->id }}">
                                                         <i class="fs-4 ti ti-plus"></i>Détails / Ajouter Quantité
                                                     </a>
                                                 </li>
@@ -134,7 +155,7 @@
         <div class="card w-100">
             <div class="card-body d-flex justify-content-between align-items-center position-relative">
                 <div>
-                    <h5 class="mb-1 fw-bold">Bienvenue, Jonathan Deo</h5>
+                    <h5 class="mb-1 fw-bold">Bienvenue, {{ auth()->user()->name }}</h5>
                     <p class="fs-3 mb-3 pb-1">Gérez vos données en toute simplicité !</p>
                     @role('Client')
                     <a class="btn btn-primary rounded-1" href="{{ route('achat') }}">
@@ -186,8 +207,8 @@
                 </tr>
               </thead>
               <tbody>
-                @forelse ($historiques as $historique)
-                 <tr>
+                @forelse ($transactions as $transaction)
+                <tr>
                     <td class="ps-0">
                       <div class="form-check mb-0 flex-shrink-0">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
@@ -197,18 +218,18 @@
                       <h6 class="fs-4 mb-0 text-truncate-2">forfait mois</h6>
                     </td>
                     <td>
-                      <h5 class="mb-1 fs-4">{{ $historique->dataPackage->Prix }} Fcfa</h5>
+                      <h5 class="mb-1 fs-4">{{ $transaction->dataPackage->Prix }} Fcfa</h5>
                     </td>
                     <td>
                         <p class="text-dark mb-0 fw-normal text-truncate-2">
-                            {{ $historique->dataPackage->Volume }} Go
+                            {{ $transaction->dataPackage->Volume }} Go
                         </p>
                     </td>
                     <td>
                       <span class="badge rounded-pill bg-success-subtle text-success border-success border">Valide</span>
                     </td>
                     <td>
-                      <p class="mb-0">{{ $historique->dataPackage->Validite }} H</p>
+                      <p class="mb-0">{{ $transaction->dataPackage->Validite }} H</p>
                     </td>
                   </tr>
                 @empty

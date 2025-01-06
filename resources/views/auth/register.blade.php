@@ -65,10 +65,7 @@
                 </span>
             @enderror
         </div>
-
-
         <button type="submit" class="btn btn-dark w-100 py-8 mb-4 rounded-1">S'inscrire</button>
-
         <div class="d-flex align-items-center">
             <p class="fs-12 mb-0 fw-medium">Avez-vous déjà un compte chez nous ?</p>
             <a class="text-success fw-bolder ms-2" href="{{ route('login') }}">Se connecter</a>

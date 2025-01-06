@@ -13,7 +13,7 @@ class Transaction extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['Volume', 'Cout', 'Prix', 'Validite ', 'Statut', 'idPaiement', 'Telephone', 'isPaied ', 'isSent ', 'isSentAt ', 'created_at', 'updated_at'];
+    protected $fillable = ['Volume', 'Cout', 'Prix', 'Validite ', 'Statut', 'idPaiement', 'Telephone', 'isPaied ', 'isSent ', 'isSentAt ', 'user_id', 'data_package_id', 'ModePaiement','created_at', 'updated_at'];
 
 
 }

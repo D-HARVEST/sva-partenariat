@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Vente;
 use App\Models\Historique;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class VenteController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class VenteController extends Controller
         $end_date = $vv['end_date'] ?? date('Y-m-d 23:59:59');
 
 
-        $ventes = Vente::where('user_id', $user->id)
+        $transactions = Transaction::where('user_id', $user->id)
             ->whereBetween('created_at', [$start_date, $end_date])
             ->with('dataPackage')
             ->latest()
@@ -51,15 +51,15 @@ class VenteController extends Controller
         ]);
 
         DB::transaction(function () use ($request) {
-            // Enregistrer la vente
-            $vente = Vente::create([
+            
+            $transactions = Transaction::create([
                 'ModePaiement' => $request->ModePaiement,
                 'user_id' => Auth::user()->id,
                 'data_package_id' => $request->data_package_id,
             ]);
 
-            // Enregistrer dans l'historique
-            Historique::create([
+            // Enregistrer dans transaction
+            Transaction::create([
                 'user_id' => Auth::user()->id,
                 'data_package_id' => $request->data_package_id,
             ]);
