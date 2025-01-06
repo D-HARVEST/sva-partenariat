@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('Cout');
             $table->integer('Prix');
             $table->integer('AncienPrix');
-            $table->integer('Validite')->default(30 * 24);
+            $table->integer('Validite')->default(720);
             $table->timestamps();
         });
     }
