@@ -16,14 +16,16 @@ return new class extends Migration
             $table->integer('Volume');
             $table->integer('Cout');
             $table->integer('Prix');
-            $table->integer('AncienPrix');
             $table->integer('Validite');
-            $table->string('Statut');
+            $table->string('ModePaiement');
+            $table->boolean('Statut')->default(false);
             $table->integer('idPaiement');
             $table->string('Telephone');
             $table->boolean('isPaied')->default(false);
             $table->boolean('isSent')->default(false);
             $table->timestamp('isSentAt')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('data_package_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
         });

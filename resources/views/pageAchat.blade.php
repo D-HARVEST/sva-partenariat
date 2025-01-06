@@ -6,6 +6,9 @@
 
 @section('content')
 <div class="tab-content">
+    <div class="text-end">
+        <a href="{{ route('dashboard') }}" class="btn btn-sm btn-primary"> Retour</a>
+    </div>
     <div id="note-full-container" class="note-has-grid row">
         @foreach($forfaits as $forfait)
             <div class="col-md-3 single-note-item all-category">
@@ -19,7 +22,7 @@
                         <ul class="list-unstyled mb-3">
                             <li class="d-flex justify-content-between align-items-center">
                                 <span>{{$forfait->Volume}} Go /  {{$forfait->Validite}} H</span>
-                                <span class="text-success fw-bold">{{$forfait->Prix}} F</span>
+                                <span class="text-success fw-bold">{{$forfait->Prix}} F</span>/<span class="text-danger fw-bold"><del>{{$forfait->AncienPrix}} F</del></span>
                             </li>
                         </ul>
                     </div>
