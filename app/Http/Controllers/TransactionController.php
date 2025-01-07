@@ -39,19 +39,19 @@ class TransactionController extends Controller
         // Créer une nouvelle transaction avec les données du formulaire
         DB::transaction(function () use ($request, $dataPackage) {
             Transaction::create([
-            'ModePaiement' => $request->ModePaiement,
-            'user_id' => Auth::user()->id,
-            'data_package_id' => $request->data_package_id,
-            'Volume' => $dataPackage->Volume,
-            'Cout' => $dataPackage->Cout,
-            'Prix' => $dataPackage->Prix,
-            'Validite' => $dataPackage->Validite,
-            'idPaiement' => rand(1000, 9999),
-            'Telephone' => $request->Telephone,
+                'ModePaiement' => $request->ModePaiement,
+                'user_id' => Auth::user()->id,
+                'data_package_id' => $request->data_package_id,
+                'Volume' => $dataPackage->Volume,
+                'Cout' => $dataPackage->Cout,
+                'Prix' => $dataPackage->Prix,
+                'Validite' => $dataPackage->Validite,
+                'idPaiement' => rand(1000, 9999), // Exemple d'un id de paiement aléatoire
+                'Telephone' => $request->Telephone,
             ]);
         });
 
-        return redirect()->route('dashboard')
+        return redirect()->route('achat')
             ->with('success', 'Achat réalisé avec succès !');
     }
 }
