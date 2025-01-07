@@ -213,7 +213,7 @@
                                 <h6 class="mb-0">Actif</h6>
                             @else
                                 <i class="ti ti-x text-danger me-2"></i>
-                                <h6 class="mb-0">Inactif</h6>
+                                <h6 class="mb-0">Expiré</h6>
                             @endif
                         </div>
                     </td>
@@ -319,7 +319,7 @@
                                 <h6 class="mb-0">Actif</h6>
                             @else
                                 <i class="ti ti-x text-danger me-2"></i>
-                                <h6 class="mb-0">Inactif</h6>
+                                <h6 class="mb-0">Expiré</h6>
                             @endif
                         </div>
                     </td>

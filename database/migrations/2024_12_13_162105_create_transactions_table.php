@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('Prix');
             $table->integer('Validite');
             $table->string('ModePaiement');
-            $table->boolean('Statut')->default(false);
+            $table->boolean('Statut')->default(true);
             $table->integer('idPaiement');
             $table->string('Telephone');
             $table->boolean('isPaied')->default(false);
