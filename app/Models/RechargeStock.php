@@ -27,7 +27,7 @@ class RechargeStock extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['Volume', 'Observation', 'ExpireAt'];
+    protected $fillable = ['Volume', 'Observation', 'ExpireAt','Type'];
 
     public function mvmStock()
     {

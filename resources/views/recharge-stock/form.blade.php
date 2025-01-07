@@ -16,6 +16,17 @@
             <input type="date" name="ExpireAt" class="form-control @error('ExpireAt') is-invalid @enderror rounded-05" value="{{ old('ExpireAt', $rechargeStock?->ExpireAt) }}" id="expire_at" >
             {!! $errors->first('ExpireAt', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
+        <div class="col-lg-6 form-group mb-2 mb20">
+            <strong> <label for="type" class="form-label">{{ __('Type') }}</label> </strong>
+            <select name="Type" class="form-control @error('Type') is-invalid @enderror rounded-05" id="type">
+                <option value="">-- Sélectionner --</option>
+                <option value="annuelle" {{ old('Type') == 'annuelle' ? 'selected' : '' }}>Annuelle</option>
+                <option value="semestrielle" {{ old('Type') == 'semestrielle' ? 'selected' : '' }}>Semestrielle</option>
+                <option value="trimestrielle" {{ old('Type') == 'trimestrielle' ? 'selected' : '' }}>Trimestrielle</option>
+            </select>
+            {!! $errors->first('Type', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        </div>
+        
 
     </div>
     <div class="box-footer mt-3">

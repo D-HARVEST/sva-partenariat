@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataPackage;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use App\Http\Requests\DataPackageRequest;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\DataPackage;
+use Illuminate\Http\Request;
+use App\Models\RechargeStock;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\DataPackageRequest;
 
 class DataPackageController extends Controller
 {
@@ -28,9 +29,13 @@ class DataPackageController extends Controller
     public function create(): View
     {
         $dataPackage = new DataPackage();
+         $rechargeStock = RechargeStock::all(); // Remplace RechargeStock par ton modèle approprié
 
-        return view('data-package.create', compact('dataPackage'));
+        return view('data-package.create', compact('dataPackage','rechargeStock'));
     }
+    
+    // Passer les stocks à la vue
+
 
     /**
      * Store a newly created resource in storage.

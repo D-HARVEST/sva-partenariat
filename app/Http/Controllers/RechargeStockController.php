@@ -39,10 +39,12 @@ class RechargeStockController extends Controller
     public function store(RechargeStockRequest $request): RedirectResponse
     {
         $all = $request->validated();
+        $all['Type'] = $request->input('Type');  // Ajoute le champ Type
+
         RechargeStock::create($all);
 
         return Redirect::route('recharge-stocks.index')
-            ->with('success', 'RechargeStock a été créé(e) avec succes !');
+            ->with('success', 'RechargeStock a été créé(e) avec succès !');
     }
 
     /**
@@ -70,13 +72,18 @@ class RechargeStockController extends Controller
      */
     public function update(RechargeStockRequest $request, RechargeStock $rechargeStock): RedirectResponse
     {
-        $all=$request->validated();
+        $all = $request->validated();
+        $all['Type'] = $request->input('Type');  // Ajoute le champ Type
+
         $rechargeStock->update($all);
 
         return Redirect::route('recharge-stocks.index')
-            ->with('success', 'RechargeStock a été mis(e) à jour avec succes !');
+            ->with('success', 'RechargeStock a été mis(e) à jour avec succès !');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy($id): RedirectResponse
     {
         $data = RechargeStock::findOrFail($id);
@@ -90,18 +97,22 @@ class RechargeStockController extends Controller
 
 
         return Redirect::route('recharge-stocks.index')
-            ->with('success', 'RechargeStock a été supprimé(e) avec succes !');
+            ->with('success', 'RechargeStock a été supprimé(e) avec succès !');
     }
 
+    /**
+     * Recharge the stock volume.
+     */
     public function rechargeVolume(Request $request)
     {
         $request->validate([
             'Volume' => 'required|numeric',
             'ExpireAt' => 'required|date',
-            'recharge_stock_id' => 'required|exists:recharge_stocks,id',
+            'id' => 'required|exists:recharge_stocks,id',
+            'Type' => 'required|string',  // Validation du Type
         ]);
 
-        $rechargevolume = RechargeStock::find($request->recharge_stock_id);
+        $rechargevolume = RechargeStock::find($request->id);
 
         if (!$rechargevolume) {
             return redirect()->back()->with('error', 'Le stock spécifié est introuvable.');
@@ -112,15 +123,16 @@ class RechargeStockController extends Controller
 
         $rechargeStock = RechargeStock::where('id', $request->id)->update([
             'Volume' => $nouveauVolume,
-            'ExpireAt'=> $request->ExpireAt,
+            'ExpireAt' => $request->ExpireAt,
         ]);
 
         $stock = MvmStock::create([
             'recharge_stock_id' => $rechargevolume->id,
             'transaction_id' => null,
-            'Type' => 'ENTREE',
+            'Type' => $request->input('Type'),  // Utilisation du Type
             'Quantite' => $request->Volume,
         ]);
+
         return redirect()->route('dashboard')->with('success', 'Stock approvisionné avec succès.');
     }
 }

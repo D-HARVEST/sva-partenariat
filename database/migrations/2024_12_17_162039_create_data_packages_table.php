@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('Prix');
             $table->integer('AncienPrix');
             $table->integer('Validite')->default(720);
+            $table->foreignId('recharge_stock_id')->nullable()->constrained("recharge_stocks")->nullOnDelete()->cascadeOnUpdate();
+
             $table->timestamps();
         });
     }
