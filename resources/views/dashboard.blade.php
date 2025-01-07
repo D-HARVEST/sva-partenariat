@@ -25,6 +25,7 @@
     @include('modalAjout')
 @endsection
 
+
 @section('content')
 @role('Super-admin')
 <div class="row">
@@ -174,6 +175,45 @@
     </div>
 </div>
 
+<!-- Modal -->
+@role('Client')
+<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm modal-md modal-lg">
+        <div class="modal-content" style="background-color: white;">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-4">
+                    <img src="{{ asset('assets/image/bell.jpg') }}" alt="Image de fond" class="img-fluid" style="max-width: 100px; height: auto; margin: 0 auto">
+                </div>
+                
+                <div class="text-center">
+                    @if ($dataPackagesAvailable)
+                        <h5 class="mb-1 fw-bold">Bienvenue, {{ auth()->user()->name }}</h5>
+                        <p class="fs-3 mb-3 pb-1" style="color:#34C759;">Nous avons des données datas disponibles !</p>
+                    @else
+                        <h5 class="mb-1 fw-bold">Bienvenue, {{ auth()->user()->name }}</h5>
+                        <p class="fs-3 pb-1 text-danger">Aucun package de données n'est disponible, Revenez plus tôt pour acheter des données !</p>
+                        <h6 class="fs-3 pb-1 text-secondary"></h6>
+                        <h6 class="mb-1 fw-bold mt-4 text-secondary">Merci pour votre confiance !</h6>
+                    @endif
+                </div>
+                
+                <div class="modal-footer mb-5" style="display: flex; justify-content: center; width: 100%; padding: 7px;">
+                    @if ($dataPackagesAvailable)
+                        <a href="{{ route('achat') }}">
+                            <button type="button" class="btn btn-secondary rounded-1">Voir les packages disponibles</button>
+                        </a>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  @endrole
+
 @role('Client')
 <div class="row">
     <div class="col-12">
@@ -184,12 +224,11 @@
               <h5 class="card-title">Historique d'achat</h5>
             </div>
             <div class="d-flex align-items-center">
-              <form class="position-relative me-3 w-100">
-                <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh"
-                  placeholder="Search">
-                <i
-                  class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-              </form>
+                <form method="GET" action="{{ route('dashboard') }}" class="position-relative me-3 w-100">
+                    <input type="text" name="search" class="form-control search-chat py-2 ps-5" id="text-srh"
+                        placeholder="Search" value="{{ old('search', $searchTerm) }}">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                </form>
             </div>
           </div>
           <div class="table-responsive overflow-x-auto latest-reviews-table">
@@ -200,10 +239,10 @@
                     #
                   </th>
                   <th>Forfait</th>
-                  <th>Prix</th>
                   <th>Volume</th>
-                  <th>Status</th>
+                  <th>Prix</th>    
                   <th>Validité</th>
+                  <th>Status</th>
                   <th>Date d'achat</th>
 
                 </tr>
@@ -220,12 +259,15 @@
                       <h6 class="fs-4 mb-0 text-truncate-2">forfait mois</h6>
                     </td>
                     <td>
-                      <h5 class="mb-1 fs-4">{{ $transaction->Prix }} Fcfa </h5>
-                    </td>
-                    <td>
                         <p class="text-dark mb-0 fw-normal text-truncate-2">
                             {{ $transaction->Volume }} Go
                         </p>
+                    </td>
+                    <td>
+                      <h5 class="mb-1 fs-4">{{ $transaction->Prix }} Fcfa </h5>
+                    </td>
+                    <td>
+                      <p class="mb-0">{{ $transaction->Validite }} H</p>
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
@@ -239,15 +281,12 @@
                         </div>
                     </td>
                     <td>
-                      <p class="mb-0">{{ $transaction->Validite }} H</p>
-                    </td>
-                    <td>
                         <p class="mb-0">{{ $transaction->created_at }}</p>
                     </td>
                   </tr>
                   @empty
                   <tr>
-                      <td colspan="6" class="text-center">
+                      <td colspan="7" class="text-center">
                           <i class="ti ti-mood-empty text-muted"
                               style="font-size: 3rem; font-weight: 100;"></i> <br>
                           Aucune donnée disponible
@@ -291,12 +330,11 @@
               <h5 class="card-title">Historique d'achat</h5>
             </div>
             <div class="d-flex align-items-center">
-              <form class="position-relative me-3 w-100">
-                <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh"
-                  placeholder="Search">
-                <i
-                  class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-              </form>
+                <form method="GET" action="{{ route('dashboard') }}" class="position-relative me-3 w-100">
+                    <input type="text" name="search" class="form-control search-chat py-2 ps-5" id="text-srh"
+                        placeholder="Search" value="{{ old('search', $searchTerm) }}">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                </form>
             </div>
           </div>
           <div class="table-responsive overflow-x-auto latest-reviews-table">
@@ -307,11 +345,12 @@
                     #
                   </th>
                   <th>Forfait</th>
-                  <th>Prix</th>
                   <th>Volume</th>
-                  <th>Status</th>
+                  <th>Prix</th>    
                   <th>Validité</th>
+                  <th>Status</th>
                   <th>Date d'achat</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -326,12 +365,15 @@
                       <h6 class="fs-4 mb-0 text-truncate-2">forfait mois</h6>
                     </td>
                     <td>
-                      <h5 class="mb-1 fs-4">{{ $transaction->Prix }} Fcfa </h5>
-                    </td>
-                    <td>
                         <p class="text-dark mb-0 fw-normal text-truncate-2">
                             {{ $transaction->Volume }} Go
                         </p>
+                    </td>
+                    <td>
+                      <h5 class="mb-1 fs-4">{{ $transaction->Prix }} Fcfa </h5>
+                    </td>
+                    <td>
+                      <p class="mb-0">{{ $transaction->Validite }} H</p>
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
@@ -345,15 +387,12 @@
                         </div>
                     </td>
                     <td>
-                      <p class="mb-0">{{ $transaction->Validite }} H</p>
-                    </td>
-                    <td>
                         <p class="mb-0">{{ $transaction->created_at }}</p>
                     </td>
                   </tr>
                   @empty
                   <tr>
-                      <td colspan="6" class="text-center">
+                      <td colspan="7" class="text-center">
                           <i class="ti ti-mood-empty text-muted"
                               style="font-size: 3rem; font-weight: 100;"></i> <br>
                           Aucune donnée disponible
@@ -382,4 +421,16 @@
     </div>
 </div>
 @endrole
+
+
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // Afficher le modal
+        var myModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+        myModal.show();
+    });
+</script>
+
 @endsection
