@@ -31,6 +31,19 @@
             <input type="number" name="Validite"  pattern="[0-9]" class="form-control @error('Validite') is-invalid @enderror rounded-05" value="{{ old('Validite', $dataPackage?->Validite) }}" id="validite" >
             {!! $errors->first('Validite', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
+        <div class="col-lg-6 form-group mb-2 mb20">
+            <strong> <label for="recharge_stock_id" class="form-label">{{ __('Sélectionner un stock') }}</label> </strong>
+            <select name="id" class="form-control @error('id') is-invalid @enderror rounded-05" id="recharge_stock_id">
+                <option value="">-- Sélectionner --</option>
+                @foreach($rechargeStock as $stock)
+                    <option value="{{ $stock->id }}" {{ old('id', $dataPackage?->id) == $stock->id ? 'selected' : '' }}>
+                        {{ $stock->id }} <!-- Remplace `nom` par la colonne qui représente le stock -->
+                    </option>
+                @endforeach
+            </select>
+            {!! $errors->first('id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        </div>
+        
 
     </div>
     <div class="box-footer mt-3">

@@ -187,7 +187,7 @@
                 <div class="text-center mb-4">
                     <img src="{{ asset('assets/image/bell.jpg') }}" alt="Image de fond" class="img-fluid" style="max-width: 100px; height: auto; margin: 0 auto">
                 </div>
-                
+
                 <div class="text-center">
                     @if ($dataPackagesAvailable)
                         <h5 class="mb-1 fw-bold">Bienvenue, {{ auth()->user()->name }}</h5>
@@ -199,7 +199,7 @@
                         <h6 class="mb-1 fw-bold mt-4 text-secondary">Merci pour votre confiance !</h6>
                     @endif
                 </div>
-                
+
                 <div class="modal-footer mb-5" style="display: flex; justify-content: center; width: 100%; padding: 7px;">
                     @if ($dataPackagesAvailable)
                         <a href="{{ route('achat') }}">
@@ -240,7 +240,7 @@
                   </th>
                   <th>Forfait</th>
                   <th>Volume</th>
-                  <th>Prix</th>    
+                  <th>Prix</th>
                   <th>Validité</th>
                   <th>Status</th>
                   <th>Date d'achat</th>
@@ -259,15 +259,15 @@
                       <h6 class="fs-4 mb-0 text-truncate-2">forfait mois</h6>
                     </td>
                     <td>
-                        <p class="text-dark mb-0 fw-normal text-truncate-2">
+                        <h5 class="mb-1 fs-4">
                             {{ $transaction->Volume }} Go
-                        </p>
+                        </h5>
                     </td>
                     <td>
                       <h5 class="mb-1 fs-4">{{ $transaction->Prix }} Fcfa </h5>
                     </td>
                     <td>
-                      <p class="mb-0">{{ $transaction->Validite }} H</p>
+                        <h5 class="mb-1 fs-4">{{ $transaction->Validite }} H</h5>
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
@@ -281,7 +281,7 @@
                         </div>
                     </td>
                     <td>
-                        <p class="mb-0">{{ $transaction->created_at }}</p>
+                        <h5 class="mb-1 fs-4">{{ $transaction->created_at }}</h5>
                     </td>
                   </tr>
                   @empty
@@ -346,11 +346,11 @@
                   </th>
                   <th>Forfait</th>
                   <th>Volume</th>
-                  <th>Prix</th>    
+                  <th>Prix</th>
                   <th>Validité</th>
                   <th>Status</th>
                   <th>Date d'achat</th>
-                  
+
                 </tr>
               </thead>
               <tbody>

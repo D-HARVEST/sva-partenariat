@@ -16,6 +16,8 @@ return new class extends Migration
             $table->integer('Volume');
             $table->text('Observation');
             $table->dateTime('ExpireAt');
+            $table->text('Type');
+
             $table->timestamps();
         });
     }

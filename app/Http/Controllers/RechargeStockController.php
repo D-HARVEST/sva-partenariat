@@ -39,10 +39,12 @@ class RechargeStockController extends Controller
     public function store(RechargeStockRequest $request): RedirectResponse
     {
         $all = $request->validated();
+        $all['Type'] = $request->input('Type');  // Ajoute le champ Type
+
         RechargeStock::create($all);
 
         return Redirect::route('recharge-stocks.index')
-            ->with('success', 'RechargeStock a été créé(e) avec succes !');
+            ->with('success', 'RechargeStock a été créé(e) avec succès !');
     }
 
     /**
@@ -70,13 +72,18 @@ class RechargeStockController extends Controller
      */
     public function update(RechargeStockRequest $request, RechargeStock $rechargeStock): RedirectResponse
     {
-        $all=$request->validated();
+        $all = $request->validated();
+        $all['Type'] = $request->input('Type');  // Ajoute le champ Type
+
         $rechargeStock->update($all);
 
         return Redirect::route('recharge-stocks.index')
-            ->with('success', 'RechargeStock a été mis(e) à jour avec succes !');
+            ->with('success', 'RechargeStock a été mis(e) à jour avec succès !');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy($id): RedirectResponse
     {
         $data = RechargeStock::findOrFail($id);
@@ -90,9 +97,12 @@ class RechargeStockController extends Controller
 
 
         return Redirect::route('recharge-stocks.index')
-            ->with('success', 'RechargeStock a été supprimé(e) avec succes !');
+            ->with('success', 'RechargeStock a été supprimé(e) avec succès !');
     }
 
+    /**
+     * Recharge the stock volume.
+     */
     public function rechargeVolume(Request $request)
     {
         $request->validate([
@@ -112,7 +122,7 @@ class RechargeStockController extends Controller
 
         $rechargeStock = RechargeStock::where('id', $request->id)->update([
             'Volume' => $nouveauVolume,
-            'ExpireAt'=> $request->ExpireAt,
+            'ExpireAt' => $request->ExpireAt,
         ]);
 
         $stock = MvmStock::create([
@@ -121,6 +131,7 @@ class RechargeStockController extends Controller
             'Type' => 'ENTREE',
             'Quantite' => $request->Volume,
         ]);
+
         return redirect()->route('dashboard')->with('success', 'Stock approvisionné avec succès.');
     }
 }
