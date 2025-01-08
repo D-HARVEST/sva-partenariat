@@ -7,6 +7,13 @@
 @section('content')
 <div class="card shadow-none border">
     <div class="card-body p-4">
+
+      @if(session('error'))
+    <div class="alert alert-danger">
+        <strong>Erreur:</strong> {{ session('error') }}
+    </div>
+@endif
+
       <div class="row">
         <!-- Section de gauche : Détail du forfait -->
         <div class="col-lg-6 border-end">

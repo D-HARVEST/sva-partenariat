@@ -37,7 +37,7 @@ class TransactionController extends Controller
     'Telephone.regex' => 'Le numéro de téléphone doit contenir exactement 10 chiffres.'
 
         ]);
-       
+
 
         // Récupérer le forfait sélectionné
         $dataPackage = DataPackage::findOrFail($request->data_package_id);
@@ -60,10 +60,6 @@ class TransactionController extends Controller
 
             // Calculer le nouveau volume
             $nouveauVolume = $rechargeStock->Volume - $dataPackage->Volume;
-
-
-           
-
 
             // Mettre à jour le stock principal
             $rechargeStock->update(['Volume' => $nouveauVolume]);

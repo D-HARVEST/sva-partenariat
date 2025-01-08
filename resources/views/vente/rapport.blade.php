@@ -192,16 +192,24 @@
                                         <h6 class="fs-4 mb-0 text-truncate-2">Forfait Semaine</h6>
                                     </td>
                                     <td>
-                                        <p class="text-dark mb-0 fw-normal text-truncate-2">{{ $vente->dataPackage->Volume }} Go</p>
+                                        <p class="text-dark mb-0 fw-normal text-truncate-2">{{ $vente->Volume }} Go</p>
                                     </td>
                                     <td>
-                                        <h5 class="mb-1 fs-4">{{ $vente->dataPackage->Prix }} FCFA</h5>
+                                        <h5 class="mb-1 fs-4">{{ $vente->Prix }} FCFA</h5>
                                     </td>
                                     <td>
-                                        <p class="mb-0">{{ $vente->dataPackage->Validite }} H</p>
+                                        <p class="mb-0">{{ $vente->Validite }} H</p>
                                     </td>
                                     <td>
-                                        <span class="badge rounded-pill bg-danger-subtle text-danger border-danger border">Expiré</span>
+                                        <div class="d-flex align-items-center">
+                                            @if($vente->Statut == 1)
+                                                <i class="ti ti-check text-success me-2"></i>
+                                                <h6 class="mb-0">Actif</h6>
+                                            @else
+                                                <i class="ti ti-x text-danger me-2"></i>
+                                                <h6 class="mb-0">Expiré</h6>
+                                            @endif
+                                        </div>
                                     </td>
                                 </tr>
                               @empty

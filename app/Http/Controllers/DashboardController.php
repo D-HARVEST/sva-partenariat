@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\DataPackage; 
 use App\Models\RechargeStock;
 use App\Models\Transaction;
-use App\Models\DataPackage; 
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -47,14 +48,47 @@ class DashboardController extends Controller
     
         
         $trans = $transQuery->get();
+
+
+
+         // Mise à jour du statut des transactions en fonction de la validité
+         foreach ($transactions as $transaction) {
+           
+            $expirationDate = Carbon::parse($transaction->created_at)->addSecond($transaction->Validite);
+            if ($expirationDate <= Carbon::now()) {
+                $transaction->Statut = 0; 
+            } else {
+                $transaction->Statut = 1; 
+            }
+            $transaction->save(); 
+        }
     
         // Retourner la vue avec les données nécessaires
         return view('dashboard', compact('transactions', 'trans', 'stocksCritiques', 'searchTerm', 'dataPackagesAvailable'));
     }
-    
-  
 
-   
+    public function rapport(Request $request)
+    {
+        
+        $vv = $request->validate([
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+        ]);
+        $start_date = $vv['start_date'] ?? date('Y-m-d 00:00:00');
+        $end_date = $vv['end_date'] ?? date('Y-m-d 23:59:59');
+
+
+        $query = Transaction::query();
+        // Filtrer par période
+
+        $query->whereBetween('created_at', [$start_date, $end_date]);
+
+
+        $ventes = $query->paginate();
+
+        return view('vente.rapport', compact('ventes'));
+           
+    }
 
     /**
      * Show the form for creating a new resource.

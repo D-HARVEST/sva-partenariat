@@ -40,7 +40,7 @@
                 @foreach($rechargeStock as $stock)
                     <option value="{{ $stock->id }}"
                             {{ old('recharge_stock_id', $dataPackage?->recharge_stock_id) == $stock->id ? 'selected' : '' }}>
-                        {{ $stock->nom ?? $stock->id }} <!-- Utilisez un nom clair ou une colonne alternative -->
+                        {{ $stock->Volume ?? $stock->id }} <!-- Utilisez un nom clair ou une colonne alternative -->
                     </option>
                 @endforeach
             </select>
