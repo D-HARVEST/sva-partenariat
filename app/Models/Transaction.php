@@ -16,4 +16,9 @@ class Transaction extends Model
     protected $fillable = ['Volume', 'Cout', 'Prix', 'Validite', 'Statut', 'idPaiement', 'Telephone', 'isPaied ', 'isSent ', 'isSentAt ', 'user_id', 'data_package_id', 'ModePaiement','created_at', 'updated_at'];
 
 
+    public function dataPackage()
+{
+    return $this->belongsTo(DataPackage::class);
+}
+
 }

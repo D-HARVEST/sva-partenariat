@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataPackage;
+use App\Models\RechargeStock;
 use Illuminate\Http\Request;
 
 class AchatController extends Controller
@@ -13,7 +14,8 @@ class AchatController extends Controller
     public function index()
     {
         $forfaits = DataPackage::all();
-        return view('pageAchat', compact('forfaits'));
+        $rechargeStocks = RechargeStock::all();
+        return view('pageAchat', compact('forfaits', 'rechargeStocks'));
     }
 
     /**

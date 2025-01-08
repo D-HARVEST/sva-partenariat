@@ -58,10 +58,7 @@ class TransactionController extends Controller
             $nouveauVolume = $rechargeStock->Volume - $dataPackage->Volume;
 
 
-            if ($nouveauVolume < 0) {
-                throw new \Exception("Stock insuffisant pour cette transaction.");
-            }
-
+           
             // Mettre à jour le stock principal
             $rechargeStock->update(['Volume' => $nouveauVolume]);
 
@@ -76,7 +73,7 @@ class TransactionController extends Controller
         });
 
 
-        return redirect()->route('achat')
+        return redirect()->route('dashboard')
             ->with('success', 'Achat réalisé avec succès !');
     }
 }

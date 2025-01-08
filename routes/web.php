@@ -39,6 +39,7 @@ Route::middleware(['auth', 'update-last-login', 'permission:gerer roles'])->grou
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/vente', [DashboardController::class, 'rapport'])->name('vente');
 Route::get('/achat', [AchatController::class, 'index'])->name('achat');
 Route::get('/confirmation/{id}', [ConfirmationController::class, 'index'])->name('confirmation');
 Route::get('/mon-profile', [ProfilController::class, 'index'])->name('mon-profile');
