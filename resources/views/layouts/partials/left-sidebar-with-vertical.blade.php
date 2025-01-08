@@ -49,8 +49,13 @@
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center justify-content-between gap-3">
                         <div class="d-flex align-items-center gap-3">
+                            @if (Auth::user()->image)
+                            <img src="{{ asset('storage/images/' . Auth::user()->image) }}" width="45"
+                                height="45" class="img-fluid rounded-circle" alt="">
+                        @else
                             <img src="{{ asset('spike/assets/images/profile/user-1.jpg') }}" width="45"
                                 height="45" class="img-fluid rounded-circle" alt="">
+                        @endif
                             <div>
                                 <h5 class="mb-1 text-truncate "> {{ Str::limit(Auth::user()->name ?? '-') }}</h5>
                                 <p class="mb-0 text-truncate ">

@@ -7,7 +7,9 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -94,5 +96,27 @@ class UserController extends Controller
 
         return Redirect::route('users.show', $user_id)
             ->with('success', 'Role ajouté avec succès !');
+    }
+
+    public function updateImage(Request $request)
+    {
+
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        if ($user->image) {
+            Storage::delete('public/images/' . $user->image);
+        }
+
+        $imagePath = $request->file('image')->store('public/images');
+        $imageName = basename($imagePath);
+
+        $user->image = $imageName;
+        $user->save();
+
+        return back()->with('success', 'Image mise à jour avec succès');
     }
 }

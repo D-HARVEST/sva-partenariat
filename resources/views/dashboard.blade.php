@@ -125,7 +125,7 @@
                                                     <a class="dropdown-item d-flex align-items-center gap-3"
                                                         href="#" data-bs-toggle="modal"
                                                         data-bs-target="#volumeExpireModal" data-id="{{ $stock->id }}">
-                                                        <i class="fs-4 ti ti-plus"></i>Détails / Ajouter Quantité
+                                                        <i class="fs-4 ti ti-plus"></i>Ajouter Quantité
                                                     </a>
                                                 </li>
                                                 <li>
