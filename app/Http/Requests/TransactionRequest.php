@@ -31,7 +31,8 @@ class TransactionRequest extends FormRequest
             'data_package_id' => 'required',
             'user_id' => 'required',
 			'idPaiement' => 'required',
-			'Telephone' => 'required|string',
+            'Telephone' => ['required', 'string', 'regex:/^[0-9]{10}$/'],
+
 			'isPaied' => 'required',
 			'isSent' => 'required',
         ];

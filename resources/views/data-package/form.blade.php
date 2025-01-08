@@ -32,15 +32,11 @@
             {!! $errors->first('Validite', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="col-lg-6 form-group mb-2 mb20">
-            <strong>
-                <label for="recharge_stock_id" class="form-label">{{ __('Sélectionner un stock') }}</label>
-            </strong>
-            <select name="recharge_stock_id"
-                    class="form-control @error('recharge_stock_id') is-invalid @enderror rounded-05"
-                    id="recharge_stock_id" required>
-                <option value="" disabled {{ old('recharge_stock_id', $dataPackage?->recharge_stock_id) ? '' : 'selected' }}>
-                    -- Sélectionner --
-                </option>
+
+            <strong> <label for="recharge_stock_id" class="form-label">{{ __('Sélectionner un stock') }}</label> </strong>
+            <select name="recharge_stock_id" class="form-control @error('id') is-invalid @enderror rounded-05" id="recharge_stock_id">
+                <option value="">-- Sélectionner --</option>
+
                 @foreach($rechargeStock as $stock)
                     <option value="{{ $stock->id }}"
                             {{ old('recharge_stock_id', $dataPackage?->recharge_stock_id) == $stock->id ? 'selected' : '' }}>

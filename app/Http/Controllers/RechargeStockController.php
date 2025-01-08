@@ -39,12 +39,11 @@ class RechargeStockController extends Controller
     public function store(RechargeStockRequest $request): RedirectResponse
     {
         $all = $request->validated();
-        $all['Type'] = $request->input('Type');  // Ajoute le champ Type
-
+        $all['Type'] = $request->input('Type');
         RechargeStock::create($all);
 
         return Redirect::route('recharge-stocks.index')
-            ->with('success', 'RechargeStock a été créé(e) avec succès !');
+            ->with('success', 'RechargeStock a été créé(e) avec succes !');
     }
 
     /**
@@ -72,13 +71,11 @@ class RechargeStockController extends Controller
      */
     public function update(RechargeStockRequest $request, RechargeStock $rechargeStock): RedirectResponse
     {
-        $all = $request->validated();
-        $all['Type'] = $request->input('Type');  // Ajoute le champ Type
-
+        $all=$request->validated();
         $rechargeStock->update($all);
 
         return Redirect::route('recharge-stocks.index')
-            ->with('success', 'RechargeStock a été mis(e) à jour avec succès !');
+            ->with('success', 'RechargeStock a été mis(e) à jour avec succes !');
     }
 
     /**
@@ -97,7 +94,7 @@ class RechargeStockController extends Controller
 
 
         return Redirect::route('recharge-stocks.index')
-            ->with('success', 'RechargeStock a été supprimé(e) avec succès !');
+            ->with('success', 'RechargeStock a été supprimé(e) avec succes !');
     }
 
     /**
@@ -122,7 +119,7 @@ class RechargeStockController extends Controller
 
         $rechargeStock = RechargeStock::where('id', $request->id)->update([
             'Volume' => $nouveauVolume,
-            'ExpireAt' => $request->ExpireAt,
+            'ExpireAt'=> $request->ExpireAt,
         ]);
 
         $stock = MvmStock::create([

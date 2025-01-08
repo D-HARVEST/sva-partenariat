@@ -12,10 +12,14 @@ class AchatController extends Controller
      */
     public function index()
     {
-        $forfaits = DataPackage::all();
+        // Récupérer uniquement les DataPackages dont le volume est inférieur ou égal au stock disponible
+        $forfaits = DataPackage::whereHas('rechargeStock', function ($query) {
+            $query->whereColumn('recharge_stocks.Volume', '>=', 'data_packages.Volume');
+        })->get();
+    
         return view('pageAchat', compact('forfaits'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */

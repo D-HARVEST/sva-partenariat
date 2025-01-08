@@ -27,13 +27,17 @@ class TransactionController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+{
         // Validation des champs nécessaires
         $request->validate([
             'ModePaiement' => 'required|string',
             'data_package_id' => 'required|exists:data_packages,id',
-            'Telephone' => 'required|string',
+            'Telephone' => ['required', 'string', 'regex:/^[0-9]{10}$/']
+], [
+    'Telephone.regex' => 'Le numéro de téléphone doit contenir exactement 10 chiffres.'
+
         ]);
+       
 
         // Récupérer le forfait sélectionné
         $dataPackage = DataPackage::findOrFail($request->data_package_id);
@@ -58,9 +62,8 @@ class TransactionController extends Controller
             $nouveauVolume = $rechargeStock->Volume - $dataPackage->Volume;
 
 
-            if ($nouveauVolume < 0) {
-                throw new \Exception("Stock insuffisant pour cette transaction.");
-            }
+           
+
 
             // Mettre à jour le stock principal
             $rechargeStock->update(['Volume' => $nouveauVolume]);
@@ -75,8 +78,6 @@ class TransactionController extends Controller
             ]);
         });
 
-
-        return redirect()->route('achat')
-            ->with('success', 'Achat réalisé avec succès !');
-    }
+        return redirect()->route('dashboard')->with('success', 'Achat réalisé avec succès !');
+}
 }

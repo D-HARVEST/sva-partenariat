@@ -42,13 +42,31 @@ class DataPackageController extends Controller
      */
     public function store(DataPackageRequest $request): RedirectResponse
     {
+        // Valider les données
         $all = $request->validated();
+    
+        // Récupérer le stock lié
+        $stock = RechargeStock::findOrFail($all['recharge_stock_id']);
+    
+        // Vérifier si le volume du stock est suffisant
+        if ($stock->Volume < $all['Volume']) {
+            return Redirect::back()
+                ->withErrors(['Volume' => 'Le volume du stock est insuffisant pour créer ce DataPackage.'])
+                ->withInput(); // Revenir avec les anciennes valeurs pour éviter que l'utilisateur ressaisisse tout
+        }
+    
+        // Créer le DataPackage
         DataPackage::create($all);
-
+    
+        // Réduire le volume du stock
+       // $stock->volume -= $all['volume'];
+       // $stock->save();
+    
+        // Rediriger avec un message de succès
         return Redirect::route('data-packages.index')
-            ->with('success', 'DataPackage a été créé(e) avec succes !');
+            ->with('success', 'Le DataPackage a été créé avec succès !');
     }
-
+    
     /**
      * Display the specified resource.
      */
@@ -65,8 +83,9 @@ class DataPackageController extends Controller
     public function edit($id): View
     {
         $dataPackage = DataPackage::findOrFail($id);
+        $rechargeStock = RechargeStock::all();
 
-        return view('data-package.edit', compact('dataPackage'));
+        return view('data-package.edit', compact('dataPackage','rechargeStock'));
     }
 
     /**

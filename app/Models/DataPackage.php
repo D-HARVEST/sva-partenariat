@@ -39,9 +39,12 @@ class DataPackage extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function rechargeStock()
+
+
     {
         return $this->belongsTo(RechargeStock::class, 'recharge_stock_id', 'id');
     }
+
 
 /**
      * Vérifie si la table `data_packages` contient des données.
