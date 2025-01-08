@@ -43,8 +43,9 @@ class DataPackageController extends Controller
     public function store(DataPackageRequest $request): RedirectResponse
     {
         $all = $request->validated();
+        $all['recharge_stock_id'] = $request->recharge_stock_id; // Associer le stock au package en utilisant le champ recharge_stock_id
         DataPackage::create($all);
-
+        
         return Redirect::route('data-packages.index')
             ->with('success', 'DataPackage a été créé(e) avec succes !');
     }

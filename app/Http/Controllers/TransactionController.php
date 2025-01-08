@@ -28,7 +28,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
 {
-    try {
+   
         $request->validate([
             'ModePaiement' => 'required|string',
             'data_package_id' => 'required|exists:data_packages,id',
@@ -53,7 +53,6 @@ class TransactionController extends Controller
             // Récupérer le stock
             $rechargeStock = RechargeStock::findOrFail($dataPackage->recharge_stock_id);
 
-            dd($rechargeStock);
             // Calculer le nouveau volume
             $nouveauVolume = $rechargeStock->Volume - $dataPackage->Volume;
             
@@ -61,6 +60,7 @@ class TransactionController extends Controller
             if ($nouveauVolume < 0) {
                 throw new \Exception("Stock insuffisant pour cette transaction.");
             }
+            
 
             // Mettre à jour le stock principal
             $rechargeStock->update(['Volume' => $nouveauVolume]);
@@ -76,9 +76,8 @@ class TransactionController extends Controller
         });
 
         return redirect()->route('achat')->with('success', 'Achat réalisé avec succès !');
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', $e->getMessage());
-    }
+    
+    
 }
 
 }
