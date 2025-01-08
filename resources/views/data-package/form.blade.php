@@ -1,6 +1,6 @@
 <div class="">
     <div class="row">
-        
+
         <div class="col-lg-6 form-group mb-2 mb20">
             <strong> <label for="reference_a_p_i" class="form-label">{{ __('Referenceapi') }}</label> <!-- <strong class="text-danger"> * </strong> -->  </strong>
             <input type="text" name="referenceAPI" class="form-control @error('referenceAPI') is-invalid @enderror rounded-05" value="{{ old('referenceAPI', $dataPackage?->referenceAPI) }}" id="reference_a_p_i" >
@@ -32,18 +32,26 @@
             {!! $errors->first('Validite', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="col-lg-6 form-group mb-2 mb20">
+
             <strong> <label for="recharge_stock_id" class="form-label">{{ __('Sélectionner un stock') }}</label> </strong>
             <select name="recharge_stock_id" class="form-control @error('id') is-invalid @enderror rounded-05" id="recharge_stock_id">
                 <option value="">-- Sélectionner --</option>
+
                 @foreach($rechargeStock as $stock)
-                    <option value="{{ $stock->id }}" {{ old('id', $dataPackage?->id) == $stock->id ? 'selected' : '' }}>
-                        {{ $stock->id }} <!-- Remplace `nom` par la colonne qui représente le stock -->
+                    <option value="{{ $stock->id }}"
+                            {{ old('recharge_stock_id', $dataPackage?->recharge_stock_id) == $stock->id ? 'selected' : '' }}>
+                        {{ $stock->nom ?? $stock->id }} <!-- Utilisez un nom clair ou une colonne alternative -->
                     </option>
                 @endforeach
             </select>
-            {!! $errors->first('id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            @error('recharge_stock_id')
+                <div class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </div>
+            @enderror
         </div>
-        
+
+
 
     </div>
     <div class="box-footer mt-3">

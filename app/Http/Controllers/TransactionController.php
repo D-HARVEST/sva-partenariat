@@ -28,15 +28,21 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
 {
-   
+        // Validation des champs nécessaires
         $request->validate([
             'ModePaiement' => 'required|string',
             'data_package_id' => 'required|exists:data_packages,id',
-            'Telephone' => 'required|string',
-        ]);
+            'Telephone' => ['required', 'string', 'regex:/^[0-9]{10}$/']
+], [
+    'Telephone.regex' => 'Le numéro de téléphone doit contenir exactement 10 chiffres.'
 
+        ]);
+       
+
+        // Récupérer le forfait sélectionné
         $dataPackage = DataPackage::findOrFail($request->data_package_id);
 
+        // Créer une nouvelle transaction avec les données du formulaire
         DB::transaction(function () use ($request, $dataPackage) {
             $transaction = Transaction::create([
                 'ModePaiement' => $request->ModePaiement,
@@ -46,21 +52,18 @@ class TransactionController extends Controller
                 'Cout' => $dataPackage->Cout,
                 'Prix' => $dataPackage->Prix,
                 'Validite' => $dataPackage->Validite,
-                'idPaiement' => rand(1000, 9999),
+                'idPaiement' => rand(1000, 9999), // Exemple d'un id de paiement aléatoire
                 'Telephone' => $request->Telephone,
             ]);
 
-            // Récupérer le stock
             $rechargeStock = RechargeStock::findOrFail($dataPackage->recharge_stock_id);
 
             // Calculer le nouveau volume
             $nouveauVolume = $rechargeStock->Volume - $dataPackage->Volume;
-            
 
-            if ($nouveauVolume < 0) {
-                throw new \Exception("Stock insuffisant pour cette transaction.");
-            }
-            
+
+           
+
 
             // Mettre à jour le stock principal
             $rechargeStock->update(['Volume' => $nouveauVolume]);
@@ -75,9 +78,6 @@ class TransactionController extends Controller
             ]);
         });
 
-        return redirect()->route('achat')->with('success', 'Achat réalisé avec succès !');
-    
-    
+        return redirect()->route('dashboard')->with('success', 'Achat réalisé avec succès !');
 }
-
 }

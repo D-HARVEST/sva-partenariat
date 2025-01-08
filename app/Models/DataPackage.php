@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class DataPackage extends Model
 {
-    
+
     protected $perPage = 20;
 
     /**
@@ -39,9 +39,43 @@ class DataPackage extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function rechargeStock()
-{
-    return $this->belongsTo(RechargeStock::class, 'recharge_stock_id');
-}
+
+
+    {
+        return $this->belongsTo(RechargeStock::class, 'recharge_stock_id', 'id');
+    }
+
+
+/**
+     * Vérifie si la table `data_packages` contient des données.
+     *
+     * @return bool
+     */
+    public static function hasData()
+    {
+        return self::exists();  // Retourne true si des enregistrements existent
+    }
+
+    /**
+     * Vérifie si la collection de données est vide.
+     *
+     * @return bool
+     */
+    public static function isEmpty()
+    {
+        return self::all()->isEmpty();  // Retourne true si la collection est vide
+    }
+
+     /**
+     * Retourne le nombre de données présentes dans la table.
+     *
+     * @return int
+     */
+    public static function countData()
+    {
+        return self::count();
+    }
+
 
     /**
      * Attributs de type date

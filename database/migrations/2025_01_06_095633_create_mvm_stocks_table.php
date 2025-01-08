@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('mvm_stocks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('recharge_stock_id')->nullable()->constrained("recharge_stocks")->nullOnDelete()->cascadeOnUpdate();
-            $table->foreignId('transaction_id')->nullable()->constrained("transactions");
+            $table->foreignId('transaction_id')->nullable()->constrained("transactions")->nullOnDelete()->cascadeOnUpdate() ;
             $table->enum('Type', ['ENTREE', 'SORTIE'])->nullable();
             $table->integer('Quantite');
             $table->timestamps();
