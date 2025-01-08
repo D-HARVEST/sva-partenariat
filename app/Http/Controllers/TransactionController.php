@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MvmStock;
 use App\Models\DataPackage;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\RechargeStock;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,7 +40,7 @@ class TransactionController extends Controller
 
         // Créer une nouvelle transaction avec les données du formulaire
         DB::transaction(function () use ($request, $dataPackage) {
-            Transaction::create([
+            $transaction = Transaction::create([
                 'ModePaiement' => $request->ModePaiement,
                 'user_id' => Auth::user()->id,
                 'data_package_id' => $request->data_package_id,
@@ -49,7 +51,30 @@ class TransactionController extends Controller
                 'idPaiement' => rand(1000, 9999), // Exemple d'un id de paiement aléatoire
                 'Telephone' => $request->Telephone,
             ]);
+
+            $rechargeStock = RechargeStock::findOrFail($dataPackage->recharge_stock_id);
+
+            // Calculer le nouveau volume
+            $nouveauVolume = $rechargeStock->Volume - $dataPackage->Volume;
+
+
+            if ($nouveauVolume < 0) {
+                throw new \Exception("Stock insuffisant pour cette transaction.");
+            }
+
+            // Mettre à jour le stock principal
+            $rechargeStock->update(['Volume' => $nouveauVolume]);
+
+
+            // Créer le mouvement de stock
+            MvmStock::create([
+                'recharge_stock_id' => $rechargeStock->id,
+                'transaction_id' => $transaction->id,
+                'Type' => 'SORTIE',
+                'Quantite' => $dataPackage->Volume,
+            ]);
         });
+
 
         return redirect()->route('achat')
             ->with('success', 'Achat réalisé avec succès !');

@@ -28,6 +28,7 @@ class DataPackageRequest extends FormRequest
 			'Prix' => 'required',
 			'AncienPrix' => 'required',
 			'Validite' => 'required',
+            'recharge_stock_id' => 'required|integer|exists:recharge_stocks,id',
         ];
     }
 }

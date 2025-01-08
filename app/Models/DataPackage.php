@@ -31,7 +31,7 @@ class DataPackage extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['referenceAPI', 'Volume', 'Cout', 'Prix', 'AncienPrix', 'Validite', 'recharge_stocks_id'];
+    protected $fillable = ['referenceAPI', 'Volume', 'Cout', 'Prix', 'AncienPrix', 'Validite', 'recharge_stock_id'];
 
     /**
      * Relation : Un DataPackage appartient à un RechargeStock.
@@ -40,7 +40,7 @@ class DataPackage extends Model
      */
     public function rechargeStock()
     {
-        return $this->belongsTo(RechargeStock::class, 'recharge_stocks_id', 'id');
+        return $this->belongsTo(RechargeStock::class, 'recharge_stock_id', 'id');
     }
 
 /**
