@@ -21,7 +21,7 @@ class DashboardController extends Controller
         if (!auth()->check()) {
             return redirect()->route('login');
         }
-        
+
         $searchTerm = $request->input('search', '');
 
         // Récupérer les paramètres de configuration
@@ -29,9 +29,7 @@ class DashboardController extends Controller
         $stocksCritiques = RechargeStock::where('Volume', '<=', $stockCritique)->get();
 
 
-        // Vérifier si des données sont disponibles dans DataPackage
-        $dataPackagesAvailable = DataPackage::hasData();
-
+     
 
 
         $transactionsQuery = Transaction::where('user_id', Auth::id());
@@ -87,7 +85,7 @@ class DashboardController extends Controller
         ->sum('Prix');
 
         // Retourner la vue avec les données nécessaires
-        return view('dashboard', compact('transactions', 'trans', 'stocksCritiques', 'searchTerm', 'dataPackagesAvailable', 'chiffreAffaireJour', 'chiffreAffaireSemaine', 'chiffreAffaireMois'));
+        return view('dashboard', compact('transactions', 'trans', 'stocksCritiques', 'searchTerm', 'chiffreAffaireJour', 'chiffreAffaireSemaine', 'chiffreAffaireMois'));
     }
 
     public function rapport(Request $request)

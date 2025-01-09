@@ -53,6 +53,7 @@
 									<th >Referenceapi</th>
 									<th >Volume</th>
 									<th >Cout</th>
+                                    <th>Recharge Compte</th>
 									<th >Prix</th>
 									<th >Ancienprix</th>
 									<th >Validite</th>
@@ -68,6 +69,7 @@
 										<td >{{ $dataPackage->referenceAPI }}</td>
 										<td >{{ $dataPackage->Volume }} Go</td>
 										<td >{{ $dataPackage->Cout }} FCFA</td>
+                                        <td >{{ $dataPackage->rechargeStock->recharge_compte->Libelle}}</td>
 										<td >{{ $dataPackage->Prix }} FCFA</td>
 										<td >{{ $dataPackage->AncienPrix }} FCFA</td>
 										<td >{{ $dataPackage->Validite }} Heure(s)</td>

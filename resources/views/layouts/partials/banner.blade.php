@@ -5,7 +5,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item">
-                        <a class="text-muted text-decoration-none" href="{{ route('home') }}">Accueil</a>
+                        <a class="text-muted text-decoration-none" href="{{ route('dashboard') }}">Accueil</a>
                     </li>
                     {{-- <li class="breadcrumb-item" aria-current="page">Shop</li> --}}
 
