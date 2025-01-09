@@ -5,19 +5,7 @@
 @extends('layouts.app')
 
 @section('script')
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const volumeExpireModal = document.getElementById('volumeExpireModal');
-        volumeExpireModal.addEventListener('show.bs.modal', (event) => {
-            const button = event.relatedTarget; // Bouton qui a déclenché le modal
-            const stockId = button.getAttribute('data-id'); // Récupérer l'ID
-            const modalForm = volumeExpireModal.querySelector('form');
 
-            // Injecter l'ID dans le champ caché du formulaire
-            modalForm.querySelector('input[name="id"]').value = stockId;
-        });
-    });
-</script>
 
 @endsection
 
@@ -175,44 +163,7 @@
     </div>
 </div>
 
-<!-- Modal -->
-@role('Client')
-<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm modal-md modal-lg">
-        <div class="modal-content" style="background-color: white;">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="text-center mb-4">
-                    <img src="{{ asset('assets/image/bell.jpg') }}" alt="Image de fond" class="img-fluid" style="max-width: 100px; height: auto; margin: 0 auto">
-                </div>
 
-                <div class="text-center">
-                    @if ($dataPackagesAvailable)
-                        <h5 class="mb-1 fw-bold">Bienvenue, {{ auth()->user()->name }}</h5>
-                        <p class="fs-3 mb-3 pb-1" style="color:#34C759;">Nous avons des données datas disponibles !</p>
-                    @else
-                        <h5 class="mb-1 fw-bold">Bienvenue, {{ auth()->user()->name }}</h5>
-                        <p class="fs-3 pb-1 text-danger">Aucun package de données n'est disponible, Revenez plus tôt pour acheter des données !</p>
-                        <h6 class="fs-3 pb-1 text-secondary"></h6>
-                        <h6 class="mb-1 fw-bold mt-4 text-secondary">Merci pour votre confiance !</h6>
-                    @endif
-                </div>
-
-                <div class="modal-footer mb-5" style="display: flex; justify-content: center; width: 100%; padding: 7px;">
-                    @if ($dataPackagesAvailable)
-                        <a href="{{ route('achat') }}">
-                            <button type="button" class="btn btn-secondary rounded-1">Voir les packages disponibles</button>
-                        </a>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-  @endrole
 
 @role('Client')
 <div class="row">
