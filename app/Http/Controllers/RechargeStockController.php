@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RechargeStockRequest;
 use App\Models\MvmStock;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
+use App\Models\RechargeCompte;
 use App\Models\RechargeStock;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\RechargeStockRequest;
+use Illuminate\View\View;
 
 class RechargeStockController extends Controller
 {
@@ -18,6 +19,7 @@ class RechargeStockController extends Controller
     public function index(Request $request): View
     {
         $rechargeStocks = RechargeStock::paginate();
+     
 
         return view('recharge-stock.index', compact('rechargeStocks'))
             ->with('i', ($request->input('page', 1) - 1) * $rechargeStocks->perPage());
@@ -29,8 +31,9 @@ class RechargeStockController extends Controller
     public function create(): View
     {
         $rechargeStock = new RechargeStock();
+        $rechargeCompte = RechargeCompte::all();
 
-        return view('recharge-stock.create', compact('rechargeStock'));
+        return view('recharge-stock.create', compact('rechargeStock','rechargeCompte'));
     }
 
     /**
@@ -38,12 +41,13 @@ class RechargeStockController extends Controller
      */
     public function store(RechargeStockRequest $request): RedirectResponse
     {
-        $all = $request->validated();
-        $all['Type'] = $request->input('Type');
+        $all=$request->validated();
+        $rechargeCompteId = $request->input('recharge_compte_id');
+        $all['recharge_compte_id'] = $rechargeCompteId;
         RechargeStock::create($all);
 
         return Redirect::route('recharge-stocks.index')
-            ->with('success', 'RechargeStock a été créé(e) avec succes !');
+            ->with('success', 'RechargeStock a été ajoutée avec succes !');
     }
 
     /**
@@ -62,8 +66,9 @@ class RechargeStockController extends Controller
     public function edit($id): View
     {
         $rechargeStock = RechargeStock::findOrFail($id);
+        $rechargeCompte = RechargeCompte::all();
 
-        return view('recharge-stock.edit', compact('rechargeStock'));
+        return view('recharge-stock.edit', compact('rechargeStock', 'rechargeCompte'));
     }
 
     /**
@@ -72,6 +77,10 @@ class RechargeStockController extends Controller
     public function update(RechargeStockRequest $request, RechargeStock $rechargeStock): RedirectResponse
     {
         $all=$request->validated();
+
+        $rechargeCompteId = $request->input('recharge_compte_id');
+        $all['recharge_compte_id'] = $rechargeCompteId;
+
         $rechargeStock->update($all);
 
         return Redirect::route('recharge-stocks.index')

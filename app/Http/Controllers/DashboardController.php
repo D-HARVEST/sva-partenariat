@@ -17,6 +17,11 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
 
+
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+        
         $searchTerm = $request->input('search', '');
 
         // Récupérer les paramètres de configuration
@@ -54,13 +59,19 @@ class DashboardController extends Controller
          // Mise à jour du statut des transactions en fonction de la validité
          foreach ($transactions as $transaction) {
 
-            $expirationDate = Carbon::parse($transaction->created_at)->addSecond($transaction->Validite);
+            // Calcul de la date d'expiration en fonction de la validité
+            $expirationDate = Carbon::parse($transaction->created_at)->addHours($transaction->Validite);
+
+            
+
             if ($expirationDate <= Carbon::now()) {
                 $transaction->Statut = 0;
             } else {
                 $transaction->Statut = 1;
             }
-            $transaction->save();
+
+            $transaction->save(); // Sauvegarder les modifications
+
         }
 
         $chiffreAffaireJour = Transaction::whereDate('created_at', now()->toDateString())

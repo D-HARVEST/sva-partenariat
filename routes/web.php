@@ -43,7 +43,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/vente', [DashboardController::class, 'rapport'])->name('vente');
 Route::get('/achat', [AchatController::class, 'index'])->name('achat');
 Route::get('/confirmation/{id}', [ConfirmationController::class, 'index'])->name('confirmation');
-
+Route::get('/mon-profile', [ProfilController::class, 'index'])->name('mon-profile');
 Route::resource('/transactions', TransactionController::class);
 Route::resource('data-packages', DataPackageController::class);
 Route::resource('recharge-stocks', RechargeStockController::class);
@@ -53,6 +53,7 @@ Route::get('/landing', function () {
 Route::redirect('/', '/landing')->name('home');
 
 Route::post('rechargeVolume', [RechargeStockController::class, 'rechargeVolume'])->name('rechargeVolume');
+
 Route::resource('recharge-comptes', RechargeCompteController::class);
 
 //les routes de la page profil
@@ -62,3 +63,4 @@ Route::put('/profil/change-password', [ProfilController::class, 'updatePassword'
 Route::post('/profil/logout-other-sessions', [ProfilController::class, 'logoutOtherSessions'])->name('logout.other.sessions');
 Route::delete('/profil/delete-account', [ProfilController::class, 'destroy'])->name('account.delete');
 Route::post('/user/update-image', [UserController::class, 'updateImage'])->name('user.updateImage');
+
