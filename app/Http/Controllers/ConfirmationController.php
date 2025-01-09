@@ -15,6 +15,7 @@ class ConfirmationController extends Controller
     {
         $details = DataPackage::findOrFail($id);
         $user = auth()->user();
+        
         return view('confirmationAchat', compact('details', 'user'));
     }
 
