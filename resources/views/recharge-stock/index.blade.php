@@ -64,7 +64,7 @@
                                             <td>{{ ++$i }}</td>
 
 										<td >{{ $rechargeStock->Volume }} go</td>*
-                                        <td >{{ $rechargeStock->RechargeCompte->Libelle}}</td>
+                                        <td >{{ $rechargeStock->rechargecompte->Libelle}}</td>
 										<td >{{ $rechargeStock->Observation }}</td>
 										<td >{{ $rechargeStock->ExpireAt }}</td>
 
