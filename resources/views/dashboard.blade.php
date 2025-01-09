@@ -41,7 +41,7 @@
                         <h6 class="mb-1 fs-6">Chiffre d'affaire du jour</h6>
 
                         <p class="mb-0">
-                            0 F CFA
+                            {{ number_format($chiffreAffaireJour, 2) }} F CFA
                         </p>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                     <h6 class="mb-1 fs-6">Chiffre d'affaire de la semaine</h6>
 
                     <p class="mb-0">
-                        0 F CFA</p>
+                        {{ number_format($chiffreAffaireSemaine, 2) }} F CFA</p>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
                 <div class="ms-6">
                     <h6 class="mb-1 fs-6">Chiffre d'affaire du Mois</h6>
                     <p class="mb-0">
-                        0 F CFA</p>
+                        {{ number_format($chiffreAffaireMois, 2) }} F CFA</p>
 
                 </div>
             </div>

@@ -12,6 +12,7 @@ use App\Http\Controllers\DataPackageController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\RechargeStockController;
+use App\Http\Controllers\RechargeCompteController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -52,6 +53,7 @@ Route::get('/landing', function () {
 Route::redirect('/', '/landing')->name('home');
 
 Route::post('rechargeVolume', [RechargeStockController::class, 'rechargeVolume'])->name('rechargeVolume');
+Route::resource('recharge-comptes', RechargeCompteController::class);
 
 //les routes de la page profil
 Route::get('/mon-profil', [ProfilController::class, 'index'])->name('mon-profil');
