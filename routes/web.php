@@ -12,6 +12,7 @@ use App\Http\Controllers\DataPackageController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\RechargeStockController;
+use App\Http\Controllers\RechargeCompteController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -52,3 +53,14 @@ Route::get('/landing', function () {
 Route::redirect('/', '/landing')->name('home');
 
 Route::post('rechargeVolume', [RechargeStockController::class, 'rechargeVolume'])->name('rechargeVolume');
+
+Route::resource('recharge-comptes', RechargeCompteController::class);
+
+//les routes de la page profil
+Route::get('/mon-profil', [ProfilController::class, 'index'])->name('mon-profil');
+Route::put('/profil', [ProfilController::class, 'updateProfil'])->name('profil.update');
+Route::put('/profil/change-password', [ProfilController::class, 'updatePassword'])->name('profil.password.update');
+Route::post('/profil/logout-other-sessions', [ProfilController::class, 'logoutOtherSessions'])->name('logout.other.sessions');
+Route::delete('/profil/delete-account', [ProfilController::class, 'destroy'])->name('account.delete');
+Route::post('/user/update-image', [UserController::class, 'updateImage'])->name('user.updateImage');
+

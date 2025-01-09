@@ -1,6 +1,6 @@
 @php
-    $pagetitle = 'Liste des stocks de data';
-    $breadcrumbs = ['Liste des stocks de data' => route('recharge-stocks.index')];
+    $pagetitle = 'Liste des Recharge Compte(s)';
+    $breadcrumbs = ['Liste des Recharge Compte(s)' => route('recharge-comptes.index')];
 @endphp
 
 @extends('layouts.app')
@@ -22,51 +22,30 @@
                         @endif
 
                         <div class="text-end">
-                            <a href="{{ route('recharge-stocks.create') }}" class="btn btn-sm btn-primary rounded-05"> Nouveau</a>
+                            <a href="{{ route('recharge-comptes.create') }}" class="btn btn-sm btn-primary rounded-05"> Nouveau</a>
                         </div>
                         <div class="col mb-2">
-                            <h5 class="card-title text-dark fw-bolder mb-0">Stocks de data</h5>
-                            <span>Liste des stocks de data</span>
-                            <div class="row justify-content-end my-2">
-                                <div class="col-sm-4">
-                                    <form method="get">
-                                        <div class="input-group mb-3">
-                                            <input type="search" placeholder="Rechercher un article"
-                                                class="form-control form-control-sm" name="search"
-                                                value="{{ request()->search }}">
-                                            <span class="input-group-text">
-                                                <i class="ti ti-search"></i>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
+                            <h5 class="card-title text-dark fw-bolder mb-0">Recharge Compte(s)</h5>
+                            <span>Liste des Recharge Compte(s)</span>
                             <hr>
                         </div>
-                        <div class="table-responsive mb-4 border rounded-1">
-                            <table class="table table-hover table-striped">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover datatable">
                                 <thead class="thead">
                                     <tr>
                                         <th>N°</th>
-
-									<th >Volume</th>
-                                    <th>Recharge Compte</th>
-									<th >Observation</th>
-									<th >Expireat</th>
+                                        
+									<th >Libelle</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($rechargeStocks as $rechargeStock)
+                                    @foreach ($rechargeComptes as $rechargeCompte)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
-										<td >{{ $rechargeStock->Volume }} go</td>*
-                                        <td >{{ $rechargeStock->RechargeCompte->Libelle}}</td>
-										<td >{{ $rechargeStock->Observation }}</td>
-										<td >{{ $rechargeStock->ExpireAt }}</td>
+                                            
+										<td >{{ $rechargeCompte->Libelle }}</td>
 
                                             <td>
                                                 <div class="dropdown dropstart">
@@ -78,17 +57,17 @@
                                                         style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(-20px, 1.6px, 0px);"
                                                         data-popper-placement="left-start">
                                                         <li>
-                                                            <a class="dropdown-item d-flex align-items-center gap-3" href="{{ route('recharge-stocks.show',$rechargeStock->id) }}">
+                                                            <a class="dropdown-item d-flex align-items-center gap-3" href="{{ route('recharge-comptes.show',$rechargeCompte->id) }}">
                                                                 <i class="fs-4 ti ti-eye"></i> Détails
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item d-flex align-items-center gap-3" href="{{ route('recharge-stocks.edit',$rechargeStock->id) }}">
+                                                            <a class="dropdown-item d-flex align-items-center gap-3" href="{{ route('recharge-comptes.edit',$rechargeCompte->id) }}">
                                                                 <i class="fs-4 ti ti-edit"></i> Modifier
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <form action="{{ route('recharge-stocks.destroy',$rechargeStock->id) }}" method="POST">
+                                                            <form action="{{ route('recharge-comptes.destroy',$rechargeCompte->id) }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="dropdown-item text-danger">
@@ -105,10 +84,10 @@
                                                             Actions
                                                         </button>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="{{ route('recharge-stocks.show',$rechargeStock->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Détails') }}</a>
-                                                            <a class="dropdown-item" href="{{ route('recharge-stocks.edit',$rechargeStock->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Modifier') }}</a>
+                                                            <a class="dropdown-item" href="{{ route('recharge-comptes.show',$rechargeCompte->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Détails') }}</a>
+                                                            <a class="dropdown-item" href="{{ route('recharge-comptes.edit',$rechargeCompte->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Modifier') }}</a>
                                                             <div class="dropdown-divider"></div>
-                                                            <form action="{{ route('recharge-stocks.destroy',$rechargeStock->id) }}" method="POST">
+                                                            <form action="{{ route('recharge-comptes.destroy',$rechargeCompte->id) }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="dropdown-item text-danger"><i class="fa fa-fw fa-trash"></i> {{ __('Supprimer') }}</button>
@@ -125,6 +104,7 @@
                         </div>
                     </div>
                 </div>
+                {!! $rechargeComptes->withQueryString()->links() !!}
             </div>
         </div>
     </div>

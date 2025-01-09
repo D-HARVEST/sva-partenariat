@@ -29,6 +29,12 @@
 
     <ul aria-expanded="false" class="collapse first-level">
         <li class="sidebar-item">
+            <a class="sidebar-link primary-hover-bg" href="{{ route('recharge-comptes.index') }}" aria-expanded="false">
+                <iconify-icon icon="mdi:database" class="fs-6 aside-icon"></iconify-icon>
+                <span class="hide-menu ps-1">Recharge de compte</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
             <a class="sidebar-link primary-hover-bg" href="{{ route('recharge-stocks.index') }}" aria-expanded="false">
                 <iconify-icon icon="mdi:database" class="fs-6 aside-icon"></iconify-icon>
                 <span class="hide-menu ps-1">Stocks de data</span>

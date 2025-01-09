@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recharge_stocks', function (Blueprint $table) {
+        Schema::create('recharge_comptes', function (Blueprint $table) {
             $table->id();
-            $table->integer('Volume');
-            $table->text('Observation');
-            $table->dateTime('ExpireAt');
-            $table->foreignId('recharge_compte_id')->constrained('recharge_comptes')->onDelete('cascade');
+            $table->string('Libelle');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recharge_stocks');
+        Schema::dropIfExists('recharge_comptes');
     }
 };

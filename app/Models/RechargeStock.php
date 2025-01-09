@@ -27,11 +27,15 @@ class RechargeStock extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['Volume', 'Observation', 'ExpireAt','Type'];
+    protected $fillable = ['Volume', 'Observation', 'recharge_compte_id', 'ExpireAt','Type'];
 
     public function mvmStock()
     {
         return $this->hasMany(MvmStock::class, 'recharge_stock_id', 'id');
     }
 
+    public function recharge_compte()
+{
+    return $this->belongsTo(RechargeCompte::class, 'recharge_compte_id', 'id');
+}
 }
