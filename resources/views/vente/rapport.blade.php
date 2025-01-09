@@ -177,10 +177,11 @@
                         <table class="table mb-0 align-middle text-nowrap">
                             <thead class="text-dark fs-4">
                                 <tr>
-
+                                     <th>Clients</th>
                                     <th>Forfait</th>
                                     <th>Volume</th>
                                     <th>Prix </th>
+                                    <th>Type Forfait</th>
                                     <th>Validité </th>
                                     <th>Statut</th>
                                 </tr>
@@ -189,6 +190,11 @@
                               @forelse ($ventes as $vente)
                                 <tr>
                                     <td>
+                                        <h5 class="mb-1 fs-4">
+                                            {{ $vente->user->name }}
+                                        </h5>
+                                    </td>
+                                    <td>
                                         <h6 class="fs-4 mb-0 text-truncate-2">Forfait Semaine</h6>
                                     </td>
                                     <td>
@@ -196,6 +202,11 @@
                                     </td>
                                     <td>
                                         <h5 class="mb-1 fs-4">{{ $vente->Prix }} FCFA</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="mb-1 fs-4">
+                                            {{ $vente->dataPackage->rechargeStock->recharge_compte->Libelle }}
+                                        </h5>
                                     </td>
                                     <td>
                                         <p class="mb-0">{{ $vente->Validite }} H</p>
