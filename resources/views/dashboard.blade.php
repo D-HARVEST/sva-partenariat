@@ -5,8 +5,19 @@
 @extends('layouts.app')
 
 @section('script')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const volumeExpireModal = document.getElementById('volumeExpireModal');
+        volumeExpireModal.addEventListener('show.bs.modal', (event) => {
+            const button = event.relatedTarget; // Bouton qui a déclenché le modal
+            const stockId = button.getAttribute('data-id'); // Récupérer l'ID
+            const modalForm = volumeExpireModal.querySelector('form');
 
-
+            // Injecter l'ID dans le champ caché du formulaire
+            modalForm.querySelector('input[name="id"]').value = stockId;
+        });
+    });
+</script>
 @endsection
 
 @section('modal')
