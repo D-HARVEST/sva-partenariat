@@ -200,9 +200,11 @@
                   <th class="ps-0">
                     #
                   </th>
+                  <th>Clients</th>
                   <th>Forfait</th>
                   <th>Volume</th>
                   <th>Prix</th>
+                  <th>Type Forfait</th>
                   <th>Validité</th>
                   <th>Status</th>
                   <th>Date d'achat</th>
@@ -218,6 +220,12 @@
                       </div>
                     </td>
                     <td>
+                        <h5 class="mb-1 fs-4">
+                            {{ $transaction->user->name }}
+                        </h5>
+                    </td>
+
+                    <td>
                       <h6 class="fs-4 mb-0 text-truncate-2">forfait mois</h6>
                     </td>
                     <td>
@@ -227,6 +235,11 @@
                     </td>
                     <td>
                       <h5 class="mb-1 fs-4">{{ $transaction->Prix }} Fcfa </h5>
+                    </td>
+                    <td>
+                        <h5 class="mb-1 fs-4">
+                            {{ $transaction->dataPackage->rechargeStock->recharge_compte->Libelle }}
+                        </h5>
                     </td>
                     <td>
                         <h5 class="mb-1 fs-4">{{ $transaction->Validite }} H</h5>
@@ -306,9 +319,11 @@
                   <th class="ps-0">
                     #
                   </th>
+                  <th>Clients</th>
                   <th>Forfait</th>
                   <th>Volume</th>
                   <th>Prix</th>
+                  <th>Type Forfait</th>
                   <th>Validité</th>
                   <th>Status</th>
                   <th>Date d'achat</th>
@@ -324,6 +339,11 @@
                       </div>
                     </td>
                     <td>
+                        <h5 class="mb-1 fs-4">
+                            {{ $transaction->user->name }}
+                        </h5>
+                    </td>
+                    <td>
                       <h6 class="fs-4 mb-0 text-truncate-2">forfait mois</h6>
                     </td>
                     <td>
@@ -333,6 +353,11 @@
                     </td>
                     <td>
                       <h5 class="mb-1 fs-4">{{ $transaction->Prix }} Fcfa </h5>
+                    </td>
+                    <td>
+                        <h5 class="mb-1 fs-4">
+                            {{ $transaction->dataPackage->rechargeStock->recharge_compte->Libelle }}
+                        </h5>
                     </td>
                     <td>
                       <p class="mb-0">{{ $transaction->Validite }} H</p>

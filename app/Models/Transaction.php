@@ -21,4 +21,10 @@ class Transaction extends Model
     return $this->belongsTo(DataPackage::class);
 }
 
+public function user()
+{
+    return $this->belongsTo(User::class);
+
+}
+
 }

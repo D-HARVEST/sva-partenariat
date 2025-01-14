@@ -1,18 +1,20 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AchatController;
-use App\Http\Controllers\VenteController;
-use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataPackageController;
-use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\ConfirmationController;
-use App\Http\Controllers\RechargeStockController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RechargeCompteController;
+use App\Http\Controllers\RechargeStockController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VenteController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -63,4 +65,8 @@ Route::put('/profil/change-password', [ProfilController::class, 'updatePassword'
 Route::post('/profil/logout-other-sessions', [ProfilController::class, 'logoutOtherSessions'])->name('logout.other.sessions');
 Route::delete('/profil/delete-account', [ProfilController::class, 'destroy'])->name('account.delete');
 Route::post('/user/update-image', [UserController::class, 'updateImage'])->name('user.updateImage');
+
+
+Route::get('/login/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [GoogleAuthController::class, 'handleGoogleCallback'])->name('login.google.callback');
 

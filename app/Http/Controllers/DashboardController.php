@@ -29,9 +29,6 @@ class DashboardController extends Controller
         $stocksCritiques = RechargeStock::where('Volume', '<=', $stockCritique)->get();
 
 
-     
-
-
         $transactionsQuery = Transaction::where('user_id', Auth::id());
         $transQuery = Transaction::query();
 
@@ -40,7 +37,6 @@ class DashboardController extends Controller
                 $query->where('Volume', 'like', '%' . $searchTerm . '%');
             });
         }
-
 
         if ($searchTerm) {
             $transQuery->where('Volume', 'like', '%' . $searchTerm . '%');
